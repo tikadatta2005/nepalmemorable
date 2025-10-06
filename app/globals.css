@@ -1,0 +1,10 @@
+@import "tailwindcss";
+/* Use Pacifico for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-pacifico), cursive;
+}
+
+/* Use Open Sans for everything else */
+body {
+  font-family: var(--font-opensans), sans-serif;
+}

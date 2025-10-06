@@ -1,0 +1,75 @@
+import Image from "next/image";
+import React from "react";
+
+const WhyUs = async ({ cover }) => {
+  const data = [
+    {
+      description: "Guiding Your Adventures, Guarding Your Safety",
+      icon: "/assets/home/about/shield.png",
+    },
+    {
+      description: "Tiny Teams, Massive Adventures",
+      icon: "/assets/home/about/shield.png",
+    },
+    {
+      description: "Genuine Experiences, Seamlessly Planned",
+      icon: "/assets/home/about/shield.png",
+    },
+    {
+      description: "Mitigating Risks, Maximizing Safety",
+      icon: "/assets/home/about/shield.png",
+    },
+    {
+      description: "Best price and value for money",
+      icon: "/assets/home/about/shield.png",
+    },
+  ];
+
+  return (
+    <section className="w-full min-h-screen bg-slate-50">
+      <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+        {/* Left: Text */}
+        <div className="flex flex-col pt-20 p-4 pb-20 md:pb-52 justify-center gap-4  px-6 md:px-12 lg:px-16">
+          <h2 className="text-slate-800 font-pacifico text-2xl md:text-3xl lg:text-4xl leading-tight mb-6">
+            Why Us? Because Your Journey Matters
+          </h2>
+
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+            {data?.map((elem, index) => {
+              return (
+                <div
+                  key={index}
+                  className="w-full transiton-all duration-300 hover:scale-105 text-sm flex flex-col gap-4 shadow-md text-slate-700 bg-white p-2 md:p-4 border-l-2 md:border-l-4 rounded-xl border-cyan-700 font-medium"
+                >
+                  <Image
+                    src={elem?.icon}
+                    alt="icon on topic"
+                    width={100}
+                    height={100}
+                    className="w-fit h-8"
+                  />
+                  <p>{elem?.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right: Full Image */}
+        <div className="relative w-full h-80 md:h-full px-4 md:px-0">
+          <div className="relative w-full h-full rounded-xl shadow-xl md:rounded-none md:shadow-none overflow-hidden">
+            <Image
+              src={cover || "/assets/home/about/aboutus.webp"}
+              alt="About us"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhyUs;

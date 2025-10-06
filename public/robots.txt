@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.nepalmemorable.com/sitemap.xml
+
+# Main Pages
+Disallow: /api/
+Disallow: /_next/
+
+# Allowed Pages
+Allow: /packages
+Allow: /about-us
+Allow: /services
+Allow: /services/trekking
+Allow: /services/tours
+Allow: /services/adventures
+Allow: /services/national-park
+Allow: /services/hiking
+Allow: /services/community-and-stay
+Allow: /testimonials
+Allow: /contact-us
+Allow: /terms-of-services
+
+# Contact Information (not pages, just info)
+# Email: navoclouds@gmail.com
+# Phone: 9845763431
+# Social Media: (Add your links if you want bots to crawl them)
