@@ -19,7 +19,7 @@ const Hero = ({ title }) => {
         muted
         playsInline
       >
-        <source src="/assets/home/hero/hero5.mp4" type="video/mp4" />
+        <source src="/assets/home/hero/video.mp4" type="video/mp4" />
       </video>
       <div className="w-full py-20 bg-gradient-to-t from-cyan-950/80 to-transparent">
         <div className="w-full max-w-5xl  mx-auto text-center">
