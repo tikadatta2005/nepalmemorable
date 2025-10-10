@@ -33,7 +33,7 @@ const Footer = async () => {
     title: "Tailor-made treks and tours in Nepal",
     cover: "",
     phone: "9845763431",
-    email: "navoclouds@gmail.com",
+    email: "nepalmemorable@gmail.com",
     socialmediaLinks: [
       "https://www.facebook.com/",
       "https://www.instagram.com/",
