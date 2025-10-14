@@ -17,44 +17,41 @@ const SlickCarousel = ({ settings, children, NextButton, PrevButton }) => {
   const [computedSettings, setComputedSettings] = useState(settings);
 
   const getSlidesFromResponsive = (width) => {
-    // Find the first matching breakpoint
-    const matched = settings.responsive?.find((bp) => width <= bp.breakpoint);
+    if (!settings.responsive) return settings;
 
-    if (matched) {
-      return matched.settings;
-    }
-    // fallback to default
-    return {
-      slidesToShow: settings.slidesToShow,
-      slidesToScroll: settings.slidesToScroll,
-    };
+    const sorted = [...settings.responsive].sort(
+      (a, b) => a.breakpoint - b.breakpoint
+    );
+    const matched = sorted.find((bp) => width <= bp.breakpoint);
+    return matched ? matched.settings : settings;
   };
 
   useEffect(() => {
-    const updateSettings = () => {
-      const width = window.innerWidth;
-      setComputedSettings({
-        ...settings,
-        ...getSlidesFromResponsive(width),
-      });
-    };
+  const updateSettings = () => {
+    const width = window.innerWidth;
+    setComputedSettings({
+      ...settings,
+      ...getSlidesFromResponsive(width),
+    });
+  };
 
-    updateSettings(); // run on mount
-    window.addEventListener("resize", updateSettings);
+  updateSettings();
+  window.addEventListener("resize", updateSettings);
 
-    return () => {
-      window.removeEventListener("resize", updateSettings);
-    };
-  }, [settings]);
+  return () => {
+    window.removeEventListener("resize", updateSettings);
+  };
+}, [settings]);
+
 
   let sliderRef = useRef(null);
 
   const handleNext = () => {
-    sliderRef?.slickNext();
+    sliderRef?.current?.slickNext();
   };
 
   const handlePrev = () => {
-    sliderRef.slickPrev();
+    sliderRef?.current?.slickPrev();
   };
 
   return (
@@ -62,7 +59,7 @@ const SlickCarousel = ({ settings, children, NextButton, PrevButton }) => {
       <div className="w-full slider-container">
         <Slider
           ref={(slider) => {
-            sliderRef = slider;
+            sliderRef.current = slider;
           }}
           {...{
             ...computedSettings,
