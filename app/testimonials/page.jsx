@@ -62,7 +62,7 @@ const Testimonials = async () => {
               ? obj?.image
               : process.env.NEXT_PUBLIC_SERVER;
 
-            return <TestimonialCard data={obj} />;
+            return <TestimonialCard data={obj} key={index} />;
           })}
         </TestimonialHolder>
       </section>
