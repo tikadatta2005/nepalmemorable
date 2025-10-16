@@ -37,7 +37,7 @@ const Testimonials = async () => {
   ];
   return (
     <main
-      className="w-full bg-cover bg-center min-h-screen"
+      className="w-full bg-cover bg-center bg-fixed bg-no-repeat min-h-screen"
       style={{
         backgroundImage: "url('/assets/testimonials/bg.jpg')",
       }}
