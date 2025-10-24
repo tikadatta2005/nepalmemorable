@@ -8,3 +8,14 @@ h1, h2, h3, h4, h5, h6 {
 body {
   font-family: var(--font-opensans), sans-serif;
 }
+
+.custom-scroll::-webkit-scrollbar{
+  width: 5px;
+  background-color: white;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+  width: 5px;
+  background-color: slategray;
+  border-radius: 5px;
+}
