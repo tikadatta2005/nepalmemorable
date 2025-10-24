@@ -242,18 +242,18 @@ const Form = () => {
 
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
           <div className="flex items-center justify-between">
-            <label htmlFor="totalPeople" className="font-semibold text-lg">
+            <span  className="font-semibold text-lg">
               Total Price{" "}
-            </label>
+            </span>
           </div>
           <div className="text-4xl text-cyan-600 font-semibold"><span className="text-sm">Rs</span> {totalPrice(formdata)}</div>
         </div> 
         
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
           <div className="flex items-center justify-between">
-            <label htmlFor="totalPeople" className="font-semibold text-lg">
+            <span  className="font-semibold text-lg">
               Ready to book?
-            </label>
+            </span>
           </div>
           <button className="w-full p-2 rounded-lg bg-cyan-700 transition-all duration-300 hover:bg-cyan-800 text-white font-semibold">Book Now</button>
         </div>
