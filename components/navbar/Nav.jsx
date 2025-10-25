@@ -90,7 +90,7 @@ const Nav = () => {
                 isScrolled ? "text-slate-700" : "text-white"
               } font-medium`}
             >
-              MEMORABLE
+              MEMORABLE TOURS
             </span>
           </Link>
 
