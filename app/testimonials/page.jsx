@@ -1,5 +1,6 @@
 import TestimonialCard from "@/components/testimonials/TestimonialCard";
 import TestimonialHolder from "@/components/testimonials/TestimonialHolder";
+import Image from "next/image";
 import React from "react";
 
 const Testimonials = async () => {
@@ -35,14 +36,20 @@ const Testimonials = async () => {
         "A seamless adventure filled with breathtaking moments. Can’t wait to book my next trip with them.",
     },
   ];
+
   return (
-    <main
-      className="w-full bg-cover bg-center bg-fixed bg-no-repeat min-h-screen"
-      style={{
-        backgroundImage: "url('/assets/testimonials/bg.jpg')",
-      }}
-    >
-      <section className="w-full min-h-screen p-8 pt-28 bg-slate-950/70">
+    <main className="relative w-full min-h-screen">
+      {/* Optimized Background */}
+      <Image
+        src="/assets/testimonials/bg.jpg"
+        alt="Testimonials background"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center -z-10"
+      />
+
+      <section className="relative w-full min-h-screen p-8 pt-28 bg-slate-950/70">
         <TestimonialHolder>
           <div className="w-full p-4 text-4xl lg:text-6xl text-white flex flex-col items-center justify-center">
             <h1 className="text-3xl lg:text-4xl font-semibold py-4">
@@ -59,9 +66,8 @@ const Testimonials = async () => {
           {[...data, ...data, ...data]?.map((elem, index) => {
             const obj = { ...elem };
             obj.image = obj.image?.includes("https://")
-              ? obj?.image
+              ? obj.image
               : process.env.NEXT_PUBLIC_SERVER;
-
             return <TestimonialCard data={obj} key={index} />;
           })}
         </TestimonialHolder>

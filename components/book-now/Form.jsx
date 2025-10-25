@@ -246,7 +246,7 @@ const Form = () => {
               Total Price{" "}
             </span>
           </div>
-          <div className="text-4xl text-cyan-600 font-semibold"><span className="text-sm">Rs</span> {totalPrice(formdata)}</div>
+          <div className="text-4xl text-cyan-600 font-semibold"><span className="text-sm">Rs</span> {Number(totalPrice(formdata)).toLocaleString()}</div>
         </div> 
         
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
