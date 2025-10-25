@@ -87,12 +87,12 @@ const Nav = () => {
             </span>
             <span
               className={`${
-                isScrolled ? "text-slate-700" : "text-white"
+                isScrolled ? "text-slate-700" : "text-cyan-200"
               } font-medium`}
             >
               MEMORABLE
             </span><span
-              className={`text-[10px] mt-2 ${
+              className={`${
                 isScrolled ? "text-slate-700" : "text-white"
               } font-medium`}
             >
