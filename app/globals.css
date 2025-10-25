@@ -1,20 +1,21 @@
 @import "tailwindcss";
-/* Use Pacifico for headings */
+
+/* Use Raleway for headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-pacifico), cursive;
+  font-family: var(--font-raleway), sans-serif;
 }
 
-/* Use Open Sans for everything else */
+/* Use Roboto for everything else */
 body {
-  font-family: var(--font-opensans), sans-serif;
+  font-family: var(--font-roboto), sans-serif;
 }
 
-.custom-scroll::-webkit-scrollbar{
+/* Custom Scroll */
+.custom-scroll::-webkit-scrollbar {
   width: 5px;
   background-color: white;
 }
-
-.custom-scroll::-webkit-scrollbar-thumb{
+.custom-scroll::-webkit-scrollbar-thumb {
   width: 5px;
   background-color: slategray;
   border-radius: 5px;

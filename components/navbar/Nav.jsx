@@ -48,7 +48,6 @@ const Nav = () => {
 
   const navigations = [
     { link: "/packages", name: "Packages" },
-    { link: "/about-us", name: "About Us" },
     { link: "/testimonials", name: "Testimonials" },
     { link: "/contact-us", name: "Contact Us" },
   ];
@@ -97,6 +96,14 @@ const Nav = () => {
 
           {/* Desktop Navigation */}
           <div className="w-fit hidden lg:flex gap-2 items-center">
+            <Link
+                href={"/about-us"}
+                className={`w-fit px-2 transition-all duration-300  ${
+                  isScrolled ? "hover:text-cyan-600" : "hover:text-cyan-200"
+                }  hover:scale-105`}
+              >
+                About Us
+              </Link>
             <div className="relative group">
               <Link
                 href="/services"
@@ -179,6 +186,13 @@ const Nav = () => {
 
         {/* Menu Items */}
         <div className="flex-1 overflow-y-auto">
+          <Link
+            href={"/about-us"}
+            onClick={handleMobileLinkClick}
+            className="block w-full p-4 font-medium text-slate-700 hover:text-cyan-700 hover:bg-gray-50 transition-all duration-300 border-b border-gray-200"
+          >
+            About Us
+          </Link>
           {/* Activities Dropdown */}
           <div className="border-b border-gray-200">
             <button

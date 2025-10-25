@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = async () => {
   return (
-    <main className="relative w-full min-h-screen bg-black/40">
+    <main className="relative w-full min-h-screen bg-black/0">
       {/* Optimized Background */}
       <Image
         src="/assets/bookings/bg.jpg"

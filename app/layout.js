@@ -1,31 +1,30 @@
 import "./globals.css";
 import Navbar from "@/components/navbar/Nav";
-import { Pacifico, Open_Sans } from "next/font/google";
+import Footer from "@/components/footer/Footer";
+import { Roboto, Raleway } from "next/font/google";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Footer from "@/components/footer/Footer";
 
-const pacifico = Pacifico({
-  weight: "400",
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
   subsets: ["latin"],
-  variable: "--font-pacifico",
+  variable: "--font-roboto",
 });
 
-const openSans = Open_Sans({
+const raleway = Raleway({
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-opensans",
+  variable: "--font-raleway",
 });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${pacifico.variable} ${openSans.variable}`}>
-      <body>
+    <html lang="en" className={`${roboto.variable} ${raleway.variable}`}>
+      <body className="custom-scroll">
         <Navbar />
         {children}
-        
-      <Footer/>
+        <Footer />
       </body>
     </html>
   );
 }
-

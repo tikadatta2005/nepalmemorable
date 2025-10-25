@@ -22,7 +22,7 @@ const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='w-full p-6 bg-white shadow-md shadow-cyan-800/20 rounded-xl space-y-4'>
+    <form onSubmit={handleSubmit} className='w-full p-6 bg-white/50 backdrop-blur-sm shadow-md shadow-cyan-800/20 rounded-xl space-y-4'>
       
       <h1 className='text-3xl font-semibold text-cyan-700 text-center mb-2'>
         Contact Now
@@ -36,7 +36,7 @@ const ContactForm = () => {
           name="name"
           value={data.name}
           onChange={handleChange}
-          className='border border-slate-300 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
+          className='border-2 border-slate-700 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
           placeholder="Enter your full name"
           required
         />
@@ -50,7 +50,7 @@ const ContactForm = () => {
           name="email"
           value={data.email}
           onChange={handleChange}
-          className='border border-slate-300 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
+          className='border-2 border-slate-700 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
           placeholder="example@gmail.com"
           required
         />
@@ -64,7 +64,7 @@ const ContactForm = () => {
           name="phone"
           value={data.phone}
           onChange={handleChange}
-          className='border border-slate-300 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
+          className='border-2 border-slate-700 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
           placeholder="9800000000"
         />
       </div>
@@ -77,7 +77,7 @@ const ContactForm = () => {
           name="subject"
           value={data.subject}
           onChange={handleChange}
-          className='border border-slate-300 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
+          className='border-2 border-slate-700 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
           placeholder="How can we help?"
           required
         />
@@ -91,7 +91,7 @@ const ContactForm = () => {
           value={data.message}
           onChange={handleChange}
           rows="4"
-          className='border border-slate-300 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
+          className='border-2 border-slate-700 px-3 py-2 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600'
           placeholder="Write your message..."
           required
         ></textarea>
