@@ -1,6 +1,6 @@
+import CsrBg from "@/components/reusables/assets/CsrBg";
 import TestimonialCard from "@/components/testimonials/TestimonialCard";
 import TestimonialHolder from "@/components/testimonials/TestimonialHolder";
-import Image from "next/image";
 import React from "react";
 
 const Testimonials = async () => {
@@ -38,16 +38,9 @@ const Testimonials = async () => {
   ];
 
   return (
-    <main className="relative w-full min-h-screen">
+    <CsrBg className="relative w-full min-h-screen bg-cover bg-fixed" style={{backgroundImage:"url(/assets/testimonials/bg.jpg)"}}>
       {/* Optimized Background */}
-      <Image
-        src="/assets/testimonials/bg.jpg"
-        alt="Testimonials background"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center -z-10"
-      />
+    
 
       <section className="relative w-full min-h-screen p-8 pt-28 bg-slate-950/70">
         <TestimonialHolder>
@@ -72,7 +65,7 @@ const Testimonials = async () => {
           })}
         </TestimonialHolder>
       </section>
-    </main>
+    </CsrBg>
   );
 };
 
