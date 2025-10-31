@@ -17,20 +17,6 @@ const Form = () => {
 
   const arrays = "tours trekkings adventures nationalparks hiking".split(" ");
 
-  const totalPrice = (elem) => {
-    let sum = 0;
-
-    arrays.forEach((key) => {
-      const items = elem[key] || [];
-      items.forEach((obj) => {
-        sum += obj.price || 0;
-      });
-    });
-
-    console.log("Total Price:", sum);
-    return sum * elem?.totalPeople;
-  };
-
   const append = (type, elem) => {
     setFormData((prev) => ({ ...prev, [type]: [...prev?.[type], elem] }));
   };
@@ -43,13 +29,13 @@ const Form = () => {
   };
 
   return (
-    <form className="w-full relative max-w-5xl mx-auto p-4 bg-white/50 backdrop-blur-sm min-h-[calc(100vh-8rem)]  rounded-xl shadow-xl">
+    <form className="w-full relative max-w-5xl mx-auto p-4 bg-white/50 backdrop-blur-sm min-h-[calc(100vh-8rem)] rounded-xl shadow-xl">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 lg:grid-cols-3">
         <div className="w-full p-8 flex flex-col gap-4 bg-white/80 rounded-xl justify-center">
           <h1 className="text-2xl text-cyan-700">Ready to Explore Nepal?</h1>
           <p>
-            Secure your spot for the trip of a lifetime. Complete the given
-            form. Select what you want and click send!
+            Secure your spot for the trip of a lifetime. Complete the form,
+            select what you want, and click send!
           </p>
         </div>
 
@@ -64,16 +50,12 @@ const Form = () => {
 
           <DropDownMenu
             url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=tours&page=:page`}
-            append={(elem) => {
-              append("tours", elem);
-            }}
-            remove={(elem) => {
-              remove("tours", elem);
-            }}
+            append={(elem) => append("tours", elem)}
+            remove={(elem) => remove("tours", elem)}
           />
         </div>
 
-        {/* trekkings  */}
+        {/* trekkings */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
           <div className="flex items-center justify-between">
             <p className="font-semibold text-lg">Select Trekking</p>
@@ -84,12 +66,8 @@ const Form = () => {
 
           <DropDownMenu
             url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=trekkings&page=:page`}
-            append={(elem) => {
-              append("trekkings", elem);
-            }}
-            remove={(elem) => {
-              remove("trekkings", elem);
-            }}
+            append={(elem) => append("trekkings", elem)}
+            remove={(elem) => remove("trekkings", elem)}
           />
         </div>
 
@@ -104,12 +82,8 @@ const Form = () => {
 
           <DropDownMenu
             url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=adventures&page=:page`}
-            append={(elem) => {
-              append("adventures", elem);
-            }}
-            remove={(elem) => {
-              remove("adventures", elem);
-            }}
+            append={(elem) => append("adventures", elem)}
+            remove={(elem) => remove("adventures", elem)}
           />
         </div>
 
@@ -124,12 +98,8 @@ const Form = () => {
 
           <DropDownMenu
             url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=national-parks&page=:page`}
-            append={(elem) => {
-              append("nationalparks", elem);
-            }}
-            remove={(elem) => {
-              remove("nationalparks", elem);
-            }}
+            append={(elem) => append("nationalparks", elem)}
+            remove={(elem) => remove("nationalparks", elem)}
           />
         </div>
 
@@ -138,28 +108,22 @@ const Form = () => {
           <div className="flex items-center justify-between">
             <p className="font-semibold text-lg">Select Hikings</p>
             <span className="text-cyan-700 text-sm">
-              {formdata?.tours?.length || 0} selected
+              {formdata?.hiking?.length || 0} selected
             </span>
           </div>
 
           <DropDownMenu
             url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=hiking&page=:page`}
-            append={(elem) => {
-              append("hiking", elem);
-            }}
-            remove={(elem) => {
-              remove("hiking", elem);
-            }}
+            append={(elem) => append("hiking", elem)}
+            remove={(elem) => remove("hiking", elem)}
           />
         </div>
 
         {/* fullname */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <label htmlFor="fullname" className="font-semibold text-lg">
-              Fullname
-            </label>
-          </div>{" "}
+          <label htmlFor="fullname" className="font-semibold text-lg">
+            Full Name
+          </label>
           <input
             className="w-full border-2 border-slate-400 text-sm px-4 p-2 rounded-lg"
             placeholder="Enter your name"
@@ -175,11 +139,9 @@ const Form = () => {
 
         {/* email */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <label htmlFor="email" className="font-semibold text-lg">
-              email
-            </label>
-          </div>
+          <label htmlFor="email" className="font-semibold text-lg">
+            Email
+          </label>
           <input
             className="w-full border-2 border-slate-400 text-sm px-4 p-2 rounded-lg"
             placeholder="Enter your email"
@@ -196,14 +158,12 @@ const Form = () => {
 
         {/* phone */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <label htmlFor="phone" className="font-semibold text-lg">
-              Phone No.
-            </label>
-          </div>{" "}
+          <label htmlFor="phone" className="font-semibold text-lg">
+            Phone No.
+          </label>
           <input
             className="w-full border-2 border-slate-400 text-sm px-4 p-2 rounded-lg"
-            placeholder="Enter your Phone no."
+            placeholder="Enter your phone number"
             value={formdata?.phone}
             required
             type="tel"
@@ -215,16 +175,14 @@ const Form = () => {
           />
         </div>
 
-        {/* phone */}
+        {/* totalPeople */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <label htmlFor="totalPeople" className="font-semibold text-lg">
-              Total People
-            </label>
-          </div>{" "}
+          <label htmlFor="totalPeople" className="font-semibold text-lg">
+            Total People
+          </label>
           <input
             className="w-full border-2 border-slate-400 text-sm px-4 p-2 rounded-lg"
-            placeholder="Enter Total people"
+            placeholder="Enter total people"
             value={formdata?.totalPeople}
             required
             type="number"
@@ -240,22 +198,12 @@ const Form = () => {
           />
         </div>
 
+        {/* submit button */}
         <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <span  className="font-semibold text-lg">
-              Total Price{" "}
-            </span>
-          </div>
-          <div className="text-4xl text-cyan-600 font-semibold"><span className="text-sm">Rs</span> {Number(totalPrice(formdata)).toLocaleString()}</div>
-        </div> 
-        
-        <div className="w-full p-4 flex flex-col gap-4 bg-white/80 rounded-xl">
-          <div className="flex items-center justify-between">
-            <span  className="font-semibold text-lg">
-              Ready to book?
-            </span>
-          </div>
-          <button className="w-full p-2 rounded-lg bg-cyan-700 transition-all duration-300 hover:bg-cyan-800 text-white font-semibold">Book Now</button>
+          <span className="font-semibold text-lg">Ready to book?</span>
+          <button className="w-full p-2 rounded-lg bg-cyan-700 transition-all duration-300 hover:bg-cyan-800 text-white font-semibold">
+            Book Now
+          </button>
         </div>
       </div>
     </form>
