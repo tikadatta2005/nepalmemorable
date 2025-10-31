@@ -10,9 +10,9 @@ const Packages = async () => {
     {
       title: "Everest Base Camp Trek",
       subtitle: "Walk Among the Giants of the Himalayas",
-      price: 175000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image1.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>12-night guided trek to Everest Base Camp</li>
         <li>Scenic flight to Lukla and back</li>
@@ -27,9 +27,9 @@ const Packages = async () => {
     {
       title: "Annapurna Base Camp Trek",
       subtitle: "A Classic Himalayan Journey",
-      price: 125000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image2.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>10-day trek through forests, waterfalls, and Gurung villages</li>
         <li>Stunning sunrise view from Poon Hill</li>
@@ -44,9 +44,9 @@ const Packages = async () => {
     {
       title: "Langtang Valley Trek",
       subtitle: "Explore the Valley of Glaciers",
-      price: 95000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image3.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>7-day trek from Syabrubesi to Kyanjin Gompa</li>
         <li>Scenic alpine forests and Tamang heritage</li>
@@ -61,9 +61,9 @@ const Packages = async () => {
     {
       title: "Pokhara Adventure Escape",
       subtitle: "Lakes, Mountains & Adrenaline",
-      price: 65000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image4.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>5-day scenic tour around Pokhara</li>
         <li>Paragliding, boating, and sunrise at Sarangkot</li>
@@ -78,9 +78,9 @@ const Packages = async () => {
     {
       title: "Kathmandu Heritage Journey",
       subtitle: "Temples, Palaces & Living Culture",
-      price: 45000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image5.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>3-day guided exploration of Kathmandu, Patan & Bhaktapur</li>
         <li>Visit UNESCO World Heritage Sites and ancient courtyards</li>
@@ -95,9 +95,9 @@ const Packages = async () => {
     {
       title: "Chitwan Jungle Safari",
       subtitle: "Wildlife & Culture in the Southern Plains",
-      price: 55000,
+      highlight: "5 days (1500 m)",
       cover: "/assets/packages/image6.jpg",
-      content: `
+      features: `
       <ul class="list-disc pl-5 space-y-1">
         <li>3-night safari in Chitwan National Park</li>
         <li>Jeep & canoe tours to spot rhinos and crocodiles</li>

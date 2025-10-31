@@ -1,11 +1,11 @@
-import Image from "next/image";
 import React from "react";
+import CsrImage from "../assets/CsrImage";
 
 const Banner3 = ({ cover, title, description }) => {
   return (
     <section className="w-full flex min-h-126">
       <div className="w-1/4 md:w-1/2 relative flex">
-        <Image
+        <CsrImage
           src={cover}
           alt={title}
           fill

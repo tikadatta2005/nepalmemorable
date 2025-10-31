@@ -1,11 +1,11 @@
-import Image from "next/image";
 import React from "react";
 import { IoArrowDown } from "react-icons/io5";
+import CsrImage from "../assets/CsrImage";
 
 const Banner1 = ({ cover, title, description }) => {
   return (
     <div className="w-full overflow-hidden">
-      <Image
+      <CsrImage
         src={cover}
         alt="Cover Banner"
         fill

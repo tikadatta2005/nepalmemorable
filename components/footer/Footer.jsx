@@ -1,143 +1,236 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { FaLinkedin, FaMailBulk } from "react-icons/fa";
-import {
-  FaXTwitter,
-  FaFacebook,
-  FaInstagram,
-  FaYoutube,
-  FaLink,
+"use client"
+import React, { useState, useEffect } from 'react';
+import { 
+  FaFacebook, 
+  FaInstagram, 
+  FaLinkedin, 
+  FaTwitter,
+  FaMailBulk,
   FaPhone,
-} from "react-icons/fa6";
+  FaExternalLinkAlt,
+  FaGlobe
+} from 'react-icons/fa';
 
-const SocialIcon = (link) => {
-  if (link.includes("facebook.com")) {
-    return FaFacebook;
-  } else if (link.includes("instagram.com")) {
-    return FaInstagram;
-  } else if (link.includes("youtube.com")) {
-    return FaYoutube;
-  } else if (link.includes("x.com")) {
-    return FaXTwitter;
-  } else if (link.includes("linkedin.com")) {
-    return FaLinkedin;
-  } else {
-    return FaLink;
+const CurrencyDisplay = () => {
+  const [rates, setRates] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // Fetch currency rates from a free API
+    fetch('https://api.exchangerate-api.com/v4/latest/NPR')
+      .then(res => res.json())
+      .then(data => {
+        const currencies = [
+          { code: 'USD', flag: '🇺🇸', name: 'US Dollar' },
+          { code: 'EUR', flag: '🇪🇺', name: 'Euro' },
+          { code: 'GBP', flag: '🇬🇧', name: 'British Pound' },
+          { code: 'AUD', flag: '🇦🇺', name: 'Australian Dollar' },
+          { code: 'JPY', flag: '🇯🇵', name: 'Japanese Yen' },
+          { code: 'CNY', flag: '🇨🇳', name: 'Chinese Yuan' },
+          { code: 'INR', flag: '🇮🇳', name: 'Indian Rupee' }
+        ];
+        
+        const ratesData = currencies.map(curr => ({
+          ...curr,
+          rate: data.rates[curr.code],
+          nprAmount: 10000,
+          foreignAmount: (10000 * data.rates[curr.code]).toFixed(2)
+        }));
+        
+        setRates(ratesData);
+      })
+      .catch(err => console.error('Error fetching rates:', err));
+  }, []);
+
+  useEffect(() => {
+    if (rates && rates.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex(prev => (prev + 1) % rates.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [rates]);
+
+  if (!rates) {
+    return (
+      <div className="text-cyan-100 text-sm">Loading currency rates...</div>
+    );
   }
+
+  const current = rates[currentIndex];
+
+  return (
+    <div className="overflow-hidden">
+      <div className="flex items-center gap-3 transition-all duration-500 ease-in-out">
+        <span className="text-2xl text-white">{current.flag}</span>
+        <div className="flex flex-col">
+          <span className="text-xs text-cyan-200">{current.name}</span>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="font-semibold text-white">NPR 10,000</span>
+            <span className="text-cyan-300">=</span>
+            <span className="font-semibold text-cyan-100">
+              {current.code} {current.foreignAmount}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
-const Footer = async () => {
+const Footer = () => {
   const data = {
-    logo: "",
-    title: "Tailor-made treks and tours in Nepal",
-    cover: "",
     phone: "9845763431",
     email: "nepalmemorable@gmail.com",
     socialmediaLinks: [
-      "https://www.facebook.com/",
-      "https://www.instagram.com/",
-      "https://www.linkedin.com/",
-      "https://www.x.com/",
+      { url: "https://www.facebook.com/", icon: FaFacebook },
+      { url: "https://www.instagram.com/", icon: FaInstagram },
+      { url: "https://www.linkedin.com/", icon: FaLinkedin },
+      { url: "https://www.x.com/", icon: FaTwitter }
     ],
-    name: "NEPAL MEMORABLE",
-    description:
-      "At NAVOCLOUDS Travel, we believe that travel is far more than visiting new places — it is an experience, a memory, and a journey that reflects your curiosity and spirit. Every tour we organize is designed to celebrate life’s most unforgettable moments, from serene escapes to thrilling adventures. Our journey began with a vision to create travel experiences that seamlessly blend comfort, excitement, and authentic local culture, ensuring each trip is not just taken, but cherished.",
+    description: "At Nepal Memorable Travel, we believe that travel is far more than visiting new places — it is an experience, a memory, and a journey that reflects your curiosity and spirit."
   };
+
   const navigation = [
     { link: "/packages", name: "Packages" },
     { link: "/about-us", name: "About Us" },
     { link: "/services", name: "Services" },
+    { link: "/testimonials", name: "Testimonials" },
+    { link: "/contact-us", name: "Contact Us" },
+    { link: "/terms-of-services", name: "Terms of Services" }
+  ];
+
+  const services = [
     { link: "/services/tours", name: "Tours" },
     { link: "/services/trekking", name: "Trekking" },
     { link: "/services/adventures", name: "Adventures" },
     { link: "/services/national-park", name: "National Park" },
     { link: "/services/hiking", name: "Hiking" },
-    { link: "/services/community-and-stay", name: "Community And Stay" },
-    { link: "/testimonials", name: "Testimonials" },
-    { link: "/contact-us", name: "Contact Us" },
-    { link: "/terms-of-services", name: "Terms of services" },
+    { link: "/services/community-and-stay", name: "Community & Stay" }
   ];
 
   return (
-    <footer className="w-full py-16 bg-cyan-900">
-      <div className="w-full p-4 mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 max-w-7xl">
-        <div className="w-full flex flex-col gap-2 col-span-1 md:col-span-2">
-          {data?.logo ? (
-            <Image
-              src={`${
-                data?.logo?.includes("https://")
-                  ? ""
-                  : process.env.NEXT_PUBLIC_SERVER
-              }${data?.logo}`}
-              alt="logo of nepal memorable"
-              width={200}
-              height={200}
-              className="w-fit h-12"
-            />
-          ) : (
-            <Image
-              src={`/assets/logo.png`}
-              alt="logo of nepal memorable"
-              width={200}
-              height={200}
-              className="w-fit h-12"
-            />
-          )}
-          <b className="text-base md:text-lg text-white">NEPAL MEMORABLE</b>
-          <p className="text-slate-100 text-sm">
-            &copy; {new Date().getFullYear()}. All rights reserved!
-            <br />
-            <br />
-            {data?.description}
-          </p>
+    <footer className="w-full bg-gradient-to-b from-cyan-900 to-cyan-950">
+      {/* Currency Rate Banner */}
+      <div className="w-full bg-cyan-800/50 border-y border-cyan-700/50 py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-cyan-100">
+              <FaGlobe className="text-xl" />
+              <span className="text-sm font-medium">Live Currency Rates</span>
+            </div>
+            <CurrencyDisplay />
+          </div>
         </div>
+      </div>
 
-        <div className="w-fit mx-auto flex text-sm flex-col gap-2 text-slate-100">
-          <b className="text-lg">Quick Links</b>
-          <div className="w-full flex flex-col gap-2 p-2">
-            {navigation?.map((links, index) => (
-              <Link
-                className="transition-all duration-300 hover:text-cyan-400"
-                href={links?.link}
-                key={index}
-              >
-                {links?.name}
-              </Link>
-            ))}
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          {/* Brand Section */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/assets/logo.png" 
+                alt="Nepal Memorable" 
+                className="h-12 w-auto"
+              />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">NEPAL MEMORABLE</h3>
+            <p className="text-sm text-cyan-50 leading-relaxed mb-4">
+              {data.description}
+            </p>
+            <div className="flex flex-col gap-2 text-sm text-cyan-100">
+              <a href={`mailto:${data.email}`} className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                <FaMailBulk />
+                <span>{data.email}</span>
+              </a>
+              <a href={`tel:${data.phone}`} className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+                <FaPhone />
+                <span>{data.phone}</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-bold text-white mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              {navigation.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.link} 
+                    className="text-sm text-cyan-100 hover:text-cyan-300 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-lg font-bold text-white mb-4">Our Services</h4>
+            <ul className="space-y-2">
+              {services.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.link} 
+                    className="text-sm text-cyan-100 hover:text-cyan-300 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="w-fit mx-auto flex flex-col gap-8 text-slate-100">
-          <div className="w-fit flex flex-col gap-2">
-            <b className="text-lg">CONTACT INFO</b>
-            <div className="p-2 text-sm flex flex-col gap-2">
-              <p className="flex gap-2 items-center">
-                <FaMailBulk /> {data?.email}
-              </p>
-              <p className="flex gap-2 items-center">
-                <FaPhone /> {data?.phone}
-              </p>
-            </div>
-          </div>{" "}
-          <div className="w-fit flex flex-col gap-2">
-            <b className="text-lg">SOCIAL MEDIA</b>
-            <div className="p-2 text-sm flex items-center gap-4">
-              {data?.socialmediaLinks &&
-                data?.socialmediaLinks?.map((elem, index) => {
-                  const Icon = SocialIcon(elem);
+        {/* Social Media & Tourism Board */}
+        <div className="mt-12 pt-8 border-t border-cyan-800/50">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Social Media */}
+            <div className="flex flex-col items-center md:items-start gap-3">
+              <span className="text-sm font-medium text-cyan-200">Follow Us</span>
+              <div className="flex items-center gap-4">
+                {data.socialmediaLinks.map((social, index) => {
+                  const Icon = social.icon;
                   return (
-                    <Link
-                      href={elem}
+                    <a
                       key={index}
-                      className="transition-all duration-300 text-xl hover:text-cyan-200 hover:scale-102 "
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cyan-100 hover:text-white text-xl transition-all hover:scale-110"
                     >
                       <Icon />
-                    </Link>
+                    </a>
                   );
                 })}
+              </div>
             </div>
+
+            {/* Nepal Tourism Board Link */}
+            <a
+              href="https://visitnepal.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-all hover:scale-105 group"
+            >
+              <span className="text-sm font-medium text-white">
+                Visit Nepal Tourism Board
+              </span>
+              <FaExternalLinkAlt className="text-cyan-200 group-hover:text-white text-sm" />
+            </a>
           </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="mt-8 pt-6 border-t border-cyan-800/50 text-center">
+          <p className="text-sm text-cyan-200">
+            © {new Date().getFullYear()} Nepal Memorable. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

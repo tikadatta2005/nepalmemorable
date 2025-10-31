@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import CsrVideo from "../reusables/assets/CsrVideo";
 
 const Hero = ({ title }) => {
   const activities = [
@@ -12,15 +13,14 @@ const Hero = ({ title }) => {
 
   return (
     <section className="w-full h-screen flex flex-col justify-end relative">
-      <video
+      <CsrVideo
         className="w-full h-full inset-0 -z-10 absolute object-cover"
         autoPlay
         loop
         muted
         playsInline
-      >
-        <source src="/assets/home/hero/video.mp4" type="video/mp4" />
-      </video>
+        src="/assets/home/hero/video.mp4" type="video/mp4"
+      />
       <div className="w-full py-20 bg-gradient-to-t from-cyan-950/80 to-transparent">
         <div className="w-full max-w-5xl  mx-auto text-center">
           <h1 className="w-full text-white lg:text-6xl md:text-5xl text-4xl font-medium">

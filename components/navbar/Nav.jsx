@@ -9,6 +9,7 @@ const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [showActivities, setShowActivities] = useState(false);
+  const [showAbouts, setShowAbouts] = useState(false)
 
   useEffect(() => {
     setIsScrolled(window.scrollY > 0);
@@ -58,7 +59,11 @@ const Nav = () => {
     { link: "/services/adventures", name: "Adventures" },
     { link: "/services/national-park", name: "National Park" },
     { link: "/services/hiking", name: "Hiking" },
-    { link: "/services/community-and-stay", name: "Community And Stay" },
+    { link: "/services/community-and-stay", name: "Home Stay" },
+  ];
+  const abouts = [
+    { link: "/about-us", name: "Nepal Memorable Tours" },
+    { link: "/nepalese-culture", name: "Nepales Culture & Festivals" },
   ];
 
   const handleMobileLinkClick = () => {
@@ -102,14 +107,32 @@ const Nav = () => {
 
           {/* Desktop Navigation */}
           <div className="w-fit hidden lg:flex gap-2 items-center">
-            <Link
-                href={"/about-us"}
-                className={`w-fit px-2 transition-all duration-300  ${
+            <div className="relative group">
+              <button
+                className={`w-fit px-2 transition-all duration-300 ${
                   isScrolled ? "hover:text-cyan-600" : "hover:text-cyan-200"
-                }  hover:scale-105`}
+                } hover:scale-105 flex gap-2 items-center`}
               >
                 About Us
-              </Link>
+                <FaAngleDown className="text-sm" />
+              </button>
+
+              <div className="hidden absolute w-fit h-fit z-50 group-hover:block p-4 top-5 left-1/2 transform -translate-x-1/2">
+                <div className="w-64 shadow-lg flex flex-col rounded-xl overflow-hidden">
+                  {abouts?.map((elem, index) => (
+                    <Link
+                      key={index}
+                      href={elem?.link}
+                      className={`w-full p-4 font-medium text-slate-700 transition-all duration-300 hover:text-cyan-700 ${
+                        index % 2 === 0 ? "bg-white/90" : "bg-blue-100/90"
+                      } backdrop-blur-sm`}
+                    >
+                      {elem?.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="relative group">
               <Link
                 href="/services"
@@ -192,13 +215,38 @@ const Nav = () => {
 
         {/* Menu Items */}
         <div className="flex-1 overflow-y-auto">
-          <Link
-            href={"/about-us"}
-            onClick={handleMobileLinkClick}
-            className="block w-full p-4 font-medium text-slate-700 hover:text-cyan-700 hover:bg-gray-50 transition-all duration-300 border-b border-gray-200"
-          >
-            About Us
-          </Link>
+          <div className="border-b border-gray-200">
+            <button
+              onClick={() => setShowAbouts(!showAbouts)}
+              className="w-full p-4 text-left font-medium text-slate-700 hover:text-cyan-700 hover:bg-gray-50 transition-all duration-300 flex items-center justify-between"
+            >
+              About Us
+              {showAbouts ? (
+                <FaAngleUp className="text-sm" />
+              ) : (
+                <FaAngleDown className="text-sm" />
+              )}
+            </button>
+
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                showAbouts ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              {abouts?.map((elem, index) => (
+                <Link
+                  key={index}
+                  href={elem?.link}
+                  onClick={handleMobileLinkClick}
+                  className="block w-full pl-8 pr-4 py-3 text-slate-600 hover:text-cyan-700 hover:bg-cyan-50 transition-all duration-300 border-l-2 border-transparent hover:border-cyan-300"
+                >
+                  {elem?.name}
+                </Link>
+              ))}
+             
+            </div>
+          </div>
+
           {/* Activities Dropdown */}
           <div className="border-b border-gray-200">
             <button

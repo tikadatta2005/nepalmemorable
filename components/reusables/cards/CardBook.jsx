@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CsrImage from "../assets/CsrImage";
 
 const CardBook = ({ data, service }) => {
   return (
     <div className="w-full flex flex-col md:flex-row rounded-xl overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
       {/* Image */}
       <div className="w-full md:w-1/3 relative h-64 md:h-auto flex-shrink-0">
-        <Image
+        <CsrImage
           src={data?.cover}
           alt={data?.title}
           fill
@@ -55,7 +55,7 @@ const CardBook = ({ data, service }) => {
             href={`/services/${service}/${data?._id}`}
             className="inline-block px-5 py-2 bg-cyan-900 text-white rounded-lg hover:bg-cyan-800 transition-colors duration-300 text-center"
           >
-            Learn More
+            Explore <span className="sr-only"></span>
           </Link>
         </div>
       </div>

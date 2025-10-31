@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CsrImage from "../assets/CsrImage";
 
 const Card1 = ({ title, cover, link }) => {
   return (
     <Link href={link}>
       <div className="w-full max-w-md relative h-100 rounded-xl overflow-hidden group">
-        <Image
+        <CsrImage
           src={cover}
           width={400}
           height={400}

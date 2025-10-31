@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import CsrImage from "../reusables/assets/CsrImage";
 
 const TestimonialCard = ({ data }) => {
   return (
     <div className="w-full p-4 py-8 max-w-md bg-white shadow-md flex flex-col gap-4 rounded-lg">
       <div className="w-full flex gap-2 items-center ">
-        <Image
+        <CsrImage
           src={data?.image}
           alt={data?.name || "Profile"}
           width={100}

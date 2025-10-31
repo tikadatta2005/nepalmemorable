@@ -1,11 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CsrImage from "../assets/CsrImage";
 
 const Banner2 = ({ title, description, cover, link }) => {
   return (
     <section className="w-full relative">
-      <Image
+      <CsrImage
         src={cover}
         alt="Cover Banner"
         fill

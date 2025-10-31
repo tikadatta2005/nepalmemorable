@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import CsrImage from "../reusables/assets/CsrImage";
 
 const WhyUs = async ({ cover }) => {
   const data = [
@@ -41,7 +42,7 @@ const WhyUs = async ({ cover }) => {
                   key={index}
                   className="w-full transiton-all duration-300 hover:scale-105 text-sm flex flex-col gap-4 shadow-md text-slate-700 bg-white p-2 md:p-4 border-l-2 md:border-l-4 rounded-xl border-cyan-700 font-medium"
                 >
-                  <Image
+                  <CsrImage
                     src={elem?.icon}
                     alt="icon on topic"
                     width={100}
@@ -58,7 +59,7 @@ const WhyUs = async ({ cover }) => {
         {/* Right: Full Image */}
         <div className="relative w-full h-80 md:h-full px-4 md:px-0">
           <div className="relative w-full h-full rounded-xl shadow-xl md:rounded-none md:shadow-none overflow-hidden">
-            <Image
+            <CsrImage
               src={cover || "/assets/home/about/aboutus.webp"}
               alt="About us"
               fill

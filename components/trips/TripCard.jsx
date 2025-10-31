@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CsrImage from "../reusables/assets/CsrImage";
 
 const TripCard = ({ data }) => {
   const { cover, title, duration, _id } = data;
@@ -10,7 +11,7 @@ const TripCard = ({ data }) => {
       className="w-full max-w-md group shadow-md bg-white p-4 rounded-lg flex flex-col gap-4 cursor-pointer"
     >
       <div className="w-full relative h-72 rounded-md overflow-hidden">
-        <Image
+        <CsrImage
           src={cover}
           width={300}
           height={300}
