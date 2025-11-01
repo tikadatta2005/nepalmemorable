@@ -9,7 +9,7 @@ const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [showActivities, setShowActivities] = useState(false);
-  const [showAbouts, setShowAbouts] = useState(false)
+  const [showAbouts, setShowAbouts] = useState(false);
 
   useEffect(() => {
     setIsScrolled(window.scrollY > 0);
@@ -63,7 +63,7 @@ const Nav = () => {
   ];
   const abouts = [
     { link: "/about-us", name: "Nepal Memorable Tours" },
-    { link: "/nepalese-culture", name: "Nepales Culture & Festivals" },
+    { link: "/nepalese-culture", name: "Nepalese Culture & Festivals" },
   ];
 
   const handleMobileLinkClick = () => {
@@ -96,7 +96,8 @@ const Nav = () => {
               } font-medium`}
             >
               MEMORABLE
-            </span><span
+            </span>
+            <span
               className={`${
                 isScrolled ? "text-slate-700" : "text-white"
               } font-medium`}
@@ -243,7 +244,6 @@ const Nav = () => {
                   {elem?.name}
                 </Link>
               ))}
-             
             </div>
           </div>
 
