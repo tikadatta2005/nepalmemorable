@@ -1,9 +1,9 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { 
-  FaFacebook, 
-  FaInstagram, 
-  FaLinkedin, 
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
   FaTwitter,
   FaMailBulk,
   FaPhone,
@@ -11,73 +11,119 @@ import {
   FaGlobe
 } from 'react-icons/fa';
 
-const CurrencyDisplay = () => {
-  const [rates, setRates] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+// ----------------------
+// Currency Converter
+// ----------------------
+const CurrencyConverter = () => {
+  const [rates, setRates] = useState({});
+  const [amount, setAmount] = useState(1);
+  const [from, setFrom] = useState('USD');
+  const [to, setTo] = useState('NPR');
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    // Fetch currency rates from a free API
-    fetch('https://api.exchangerate-api.com/v4/latest/NPR')
+    fetch('https://api.exchangerate-api.com/v4/latest/USD')
       .then(res => res.json())
-      .then(data => {
-        const currencies = [
-          { code: 'USD', flag: '🇺🇸', name: 'US Dollar' },
-          { code: 'EUR', flag: '🇪🇺', name: 'Euro' },
-          { code: 'GBP', flag: '🇬🇧', name: 'British Pound' },
-          { code: 'AUD', flag: '🇦🇺', name: 'Australian Dollar' },
-          { code: 'JPY', flag: '🇯🇵', name: 'Japanese Yen' },
-          { code: 'CNY', flag: '🇨🇳', name: 'Chinese Yuan' },
-          { code: 'INR', flag: '🇮🇳', name: 'Indian Rupee' }
-        ];
-        
-        const ratesData = currencies.map(curr => ({
-          ...curr,
-          rate: data.rates[curr.code],
-          nprAmount: 10000,
-          foreignAmount: (10000 * data.rates[curr.code]).toFixed(2)
-        }));
-        
-        setRates(ratesData);
-      })
+      .then(data => setRates(data.rates))
       .catch(err => console.error('Error fetching rates:', err));
   }, []);
 
+  const convert = () => {
+    if (!rates[from] || !rates[to]) return;
+    const baseAmount = amount / rates[from];
+    const converted = baseAmount * rates[to];
+    setResult(converted.toFixed(2));
+  };
+
   useEffect(() => {
-    if (rates && rates.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % rates.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [rates]);
+    convert();
+  }, [amount, from, to, rates]);
 
-  if (!rates) {
-    return (
-      <div className="text-cyan-100 text-sm">Loading currency rates...</div>
-    );
-  }
-
-  const current = rates[currentIndex];
+  const currencyOptions = Object.keys(rates);
 
   return (
-    <div className="overflow-hidden">
-      <div className="flex items-center gap-3 transition-all duration-500 ease-in-out">
-        <span className="text-2xl text-white">{current.flag}</span>
-        <div className="flex flex-col">
-          <span className="text-xs text-cyan-200">{current.name}</span>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="font-semibold text-white">NPR 10,000</span>
-            <span className="text-cyan-300">=</span>
-            <span className="font-semibold text-cyan-100">
-              {current.code} {current.foreignAmount}
-            </span>
-          </div>
-        </div>
+    <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="flex items-center gap-2 text-cyan-100">
+        <FaGlobe className="text-xl" />
+        <span className="text-sm font-medium">Currency Converter</span>
+      </div>
+
+      <div className="flex items-center gap-2 text-sm text-white bg-cyan-900/60 p-2 rounded-lg">
+        <input
+          type="number"
+          value={amount}
+          onChange={e => setAmount(e.target.value)}
+          className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50 w-20"
+        />
+        <select
+          value={from}
+          onChange={e => setFrom(e.target.value)}
+          className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50"
+        >
+          {currencyOptions.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+        <span className="text-cyan-300">→</span>
+        <select
+          value={to}
+          onChange={e => setTo(e.target.value)}
+          className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50"
+        >
+          {currencyOptions.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+        <span className="ml-2 text-cyan-100 font-semibold">
+          {result ? `${result} ${to}` : '...'}
+        </span>
       </div>
     </div>
   );
 };
 
+// ----------------------
+// Currency Rate List
+// ----------------------
+const CurrencyRateList = () => {
+  const [rates, setRates] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.exchangerate-api.com/v4/latest/NPR')
+      .then(res => res.json())
+      .then(data => {
+        const selected = {
+          USD: data.rates.USD,
+          EUR: data.rates.EUR,
+          GBP: data.rates.GBP,
+          AUD: data.rates.AUD,
+          JPY: data.rates.JPY,
+          CNY: data.rates.CNY,
+          INR: data.rates.INR
+        };
+        setRates(selected);
+      })
+      .catch(err => console.error('Error fetching rates:', err));
+  }, []);
+
+  if (!rates) {
+    return <div className="text-sm text-cyan-200">Loading rates...</div>;
+  }
+
+  return (
+    <ul className="space-y-1 text-sm text-cyan-100">
+      {Object.entries(rates).map(([code, value]) => (
+        <li key={code}>
+          1 {code} = {(1 / value).toFixed(2)} NPR
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+// ----------------------
+// Footer
+// ----------------------
 const Footer = () => {
   const data = {
     phone: "9845763431",
@@ -88,7 +134,8 @@ const Footer = () => {
       { url: "https://www.linkedin.com/", icon: FaLinkedin },
       { url: "https://www.x.com/", icon: FaTwitter }
     ],
-    description: "At Nepal Memorable Travel, we believe that travel is far more than visiting new places — it is an experience, a memory, and a journey that reflects your curiosity and spirit."
+    description:
+      "At Nepal Memorable Travel, we believe that travel is far more than visiting new places — it is an experience, a memory, and a journey that reflects your curiosity and spirit."
   };
 
   const navigation = [
@@ -111,41 +158,43 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-gradient-to-b from-cyan-900 to-cyan-950">
-      {/* Currency Rate Banner */}
+      {/* Currency Converter */}
       <div className="w-full bg-cyan-800/50 border-y border-cyan-700/50 py-4">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-cyan-100">
-              <FaGlobe className="text-xl" />
-              <span className="text-sm font-medium">Live Currency Rates</span>
-            </div>
-            <CurrencyDisplay />
-          </div>
+          <CurrencyConverter />
         </div>
       </div>
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <img 
-                src="/assets/logo.png" 
-                alt="Nepal Memorable" 
+              <img
+                src="/assets/logo.png"
+                alt="Nepal Memorable"
                 className="h-12 w-auto"
               />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">NEPAL MEMORABLE</h3>
+            <h3 className="text-xl font-bold text-white mb-2">
+              NEPAL MEMORABLE
+            </h3>
             <p className="text-sm text-cyan-50 leading-relaxed mb-4">
               {data.description}
             </p>
             <div className="flex flex-col gap-2 text-sm text-cyan-100">
-              <a href={`mailto:${data.email}`} className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+              <a
+                href={`mailto:${data.email}`}
+                className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
+              >
                 <FaMailBulk />
                 <span>{data.email}</span>
               </a>
-              <a href={`tel:${data.phone}`} className="flex items-center gap-2 hover:text-cyan-300 transition-colors">
+              <a
+                href={`tel:${data.phone}`}
+                className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
+              >
                 <FaPhone />
                 <span>{data.phone}</span>
               </a>
@@ -158,8 +207,8 @@ const Footer = () => {
             <ul className="space-y-2">
               {navigation.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.link} 
+                  <a
+                    href={link.link}
                     className="text-sm text-cyan-100 hover:text-cyan-300 transition-colors"
                   >
                     {link.name}
@@ -175,8 +224,8 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.link} 
+                  <a
+                    href={link.link}
                     className="text-sm text-cyan-100 hover:text-cyan-300 transition-colors"
                   >
                     {link.name}
@@ -184,6 +233,12 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Currency Rates */}
+          <div>
+            <h4 className="text-lg font-bold text-white mb-4">Currency Rates</h4>
+            <CurrencyRateList />
           </div>
         </div>
 
