@@ -1,5 +1,6 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import { GetData } from "@/utils/GetData";
+import React, { useState, useEffect } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -8,8 +9,8 @@ import {
   FaMailBulk,
   FaPhone,
   FaExternalLinkAlt,
-  FaGlobe
-} from 'react-icons/fa';
+  FaGlobe,
+} from "react-icons/fa";
 
 // ----------------------
 // Currency Converter
@@ -17,15 +18,15 @@ import {
 const CurrencyConverter = () => {
   const [rates, setRates] = useState({});
   const [amount, setAmount] = useState(1);
-  const [from, setFrom] = useState('USD');
-  const [to, setTo] = useState('NPR');
+  const [from, setFrom] = useState("USD");
+  const [to, setTo] = useState("NPR");
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.exchangerate-api.com/v4/latest/USD')
-      .then(res => res.json())
-      .then(data => setRates(data.rates))
-      .catch(err => console.error('Error fetching rates:', err));
+    fetch("https://api.exchangerate-api.com/v4/latest/USD")
+      .then((res) => res.json())
+      .then((data) => setRates(data?.rates))
+      .catch((err) => console.error("Error fetching rates:", err));
   }, []);
 
   const convert = () => {
@@ -52,30 +53,34 @@ const CurrencyConverter = () => {
         <input
           type="number"
           value={amount}
-          onChange={e => setAmount(e.target.value)}
+          onChange={(e) => setAmount(e.target.value)}
           className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50 w-20"
         />
         <select
           value={from}
-          onChange={e => setFrom(e.target.value)}
+          onChange={(e) => setFrom(e.target.value)}
           className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50"
         >
-          {currencyOptions.map(c => (
-            <option key={c} value={c}>{c}</option>
+          {currencyOptions.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
           ))}
         </select>
         <span className="text-cyan-300">→</span>
         <select
           value={to}
-          onChange={e => setTo(e.target.value)}
+          onChange={(e) => setTo(e.target.value)}
           className="bg-cyan-950/70 px-2 py-1 rounded text-cyan-50"
         >
-          {currencyOptions.map(c => (
-            <option key={c} value={c}>{c}</option>
+          {currencyOptions.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
           ))}
         </select>
         <span className="ml-2 text-cyan-100 font-semibold">
-          {result ? `${result} ${to}` : '...'}
+          {result ? `${result} ${to}` : "..."}
         </span>
       </div>
     </div>
@@ -89,21 +94,21 @@ const CurrencyRateList = () => {
   const [rates, setRates] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.exchangerate-api.com/v4/latest/NPR')
-      .then(res => res.json())
-      .then(data => {
+    fetch("https://api.exchangerate-api.com/v4/latest/NPR")
+      .then((res) => res.json())
+      .then((data) => {
         const selected = {
-          USD: data.rates.USD,
-          EUR: data.rates.EUR,
-          GBP: data.rates.GBP,
-          AUD: data.rates.AUD,
-          JPY: data.rates.JPY,
-          CNY: data.rates.CNY,
-          INR: data.rates.INR
+          USD: data?.rates.USD,
+          EUR: data?.rates.EUR,
+          GBP: data?.rates.GBP,
+          AUD: data?.rates.AUD,
+          JPY: data?.rates.JPY,
+          CNY: data?.rates.CNY,
+          INR: data?.rates.INR,
         };
         setRates(selected);
       })
-      .catch(err => console.error('Error fetching rates:', err));
+      .catch((err) => console.error("Error fetching rates:", err));
   }, []);
 
   if (!rates) {
@@ -125,18 +130,15 @@ const CurrencyRateList = () => {
 // Footer
 // ----------------------
 const Footer = () => {
-  const data = {
-    phone: "9845763431",
-    email: "nepalmemorable@gmail.com",
-    socialmediaLinks: [
-      { url: "https://www.facebook.com/", icon: FaFacebook },
-      { url: "https://www.instagram.com/", icon: FaInstagram },
-      { url: "https://www.linkedin.com/", icon: FaLinkedin },
-      { url: "https://www.x.com/", icon: FaTwitter }
-    ],
-    description:
-      "At Nepal Memorable Travel, we believe that travel is far more than visiting new places — it is an experience, a memory, and a journey that reflects your curiosity and spirit."
-  };
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const res = await GetData("/web-details");
+      setData(res?.data);
+      console.log(res?.data)
+    })();
+  }, []);
 
   const navigation = [
     { link: "/packages", name: "Packages" },
@@ -144,7 +146,7 @@ const Footer = () => {
     { link: "/services", name: "Services" },
     { link: "/testimonials", name: "Testimonials" },
     { link: "/contact-us", name: "Contact Us" },
-    { link: "/terms-of-services", name: "Terms of Services" }
+    { link: "/terms-of-services", name: "Terms of Services" },
   ];
 
   const services = [
@@ -153,7 +155,7 @@ const Footer = () => {
     { link: "/services/adventures", name: "Adventures" },
     { link: "/services/national-park", name: "National Park" },
     { link: "/services/hiking", name: "Hiking" },
-    { link: "/services/community-and-stay", name: "Community & Stay" }
+    { link: "/services/community-and-stay", name: "Community & Stay" },
   ];
 
   return (
@@ -181,22 +183,22 @@ const Footer = () => {
               NEPAL MEMORABLE TOURS {"[P].LTD"}
             </h3>
             <p className="text-sm text-cyan-50 leading-relaxed mb-4">
-              {data.description}
+              {data?.description}
             </p>
             <div className="flex flex-col gap-2 text-sm text-cyan-100">
               <a
-                href={`mailto:${data.email}`}
+                href={`mailto:${data?.email}`}
                 className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
               >
                 <FaMailBulk />
-                <span>{data.email}</span>
+                <span>{data?.email}</span>
               </a>
               <a
-                href={`tel:${data.phone}`}
+                href={`tel:${data?.phone}`}
                 className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
               >
                 <FaPhone />
-                <span>{data.phone}</span>
+                <span>{data?.phone}</span>
               </a>
             </div>
           </div>
@@ -237,7 +239,9 @@ const Footer = () => {
 
           {/* Currency Rates */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4">Currency Rates</h4>
+            <h4 className="text-lg font-bold text-white mb-4">
+              Currency Rates
+            </h4>
             <CurrencyRateList />
           </div>
         </div>
@@ -247,9 +251,11 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Social Media */}
             <div className="flex flex-col items-center md:items-start gap-3">
-              <span className="text-sm font-medium text-cyan-200">Follow Us</span>
+              <span className="text-sm font-medium text-cyan-200">
+                Follow Us
+              </span>
               <div className="flex items-center gap-4">
-                {data.socialmediaLinks.map((social, index) => {
+                {data?.socialmediaLinks && data?.socialmediaLinks?.map((social, index) => {
                   const Icon = social.icon;
                   return (
                     <a
