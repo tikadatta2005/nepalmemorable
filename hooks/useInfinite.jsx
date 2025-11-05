@@ -1,12 +1,13 @@
 "use client";
+import { GetData } from "@/utils/GetData";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 
-const useInfinite = (url, factor = []) => {
+const useInfinite = (url, initialPage=0) => {
   const ref = useRef(null);
   const [loading, setLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(initialPage);
   const [error, setError] = useState(null);
 
   // Memoize getData to prevent unnecessary re-renders
@@ -19,22 +20,15 @@ const useInfinite = (url, factor = []) => {
     console.log(url);
 
     try {
-      const res = await fetch(url?.replace(":page", page), {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          apiKey: process.env.NEXT_PUBLIC_API_KEY,
-        },
-      });
-      const resData = await res.json();
+      const res = await GetData(url?.replace(":page", page));
 
-      if (!res.ok) {
+      if (res?.error) {
         throw new Error(
-          resData?.message || `HTTP error! status: ${res.status}`
+          res?.message || `HTTP error! status: ${res.status}`
         );
       }
 
-      const newData = resData?.data || [];
+      const newData = res?.data || [];
 
       // Only update if we got new data
       if (newData.length > 0) {
@@ -53,7 +47,7 @@ const useInfinite = (url, factor = []) => {
     } finally {
       setLoading(false);
     }
-  }, [url, page, loading, completed, ...factor]);
+  }, [url, page, loading, completed]);
 
   useEffect(() => {
     const element = ref.current;

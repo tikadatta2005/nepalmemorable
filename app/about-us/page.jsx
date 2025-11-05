@@ -20,13 +20,14 @@ const AboutUs = async () => {
       {Array.isArray(data) &&
         data?.map((element, index) => {
           const elem = { ...element };
+          const {cover} = elem
 
           if (index === 0) {
             return (
               <Banner1
                 title={elem?.title}
                 description={elem?.description}
-                cover={elem?.cover}
+                cover={`${process.env.NEXT_PUBLIC_SERVER}/${cover}`}
                 key={index}
               />
             );
@@ -35,7 +36,7 @@ const AboutUs = async () => {
               <Banner2
                 title={elem?.title}
                 description={elem?.description}
-                cover={elem?.cover}
+                cover={`${process.env.NEXT_PUBLIC_SERVER}/${cover}`}
                 key={index}
                 link={{ href: "/book-now", name: "Book a trip now!" }}
               />
@@ -46,7 +47,7 @@ const AboutUs = async () => {
                 index={index}
                 title={elem?.title}
                 description={elem?.description}
-                cover={elem?.cover}
+                cover={`${process.env.NEXT_PUBLIC_SERVER}/${cover}`}
                 key={index}
               />
             );

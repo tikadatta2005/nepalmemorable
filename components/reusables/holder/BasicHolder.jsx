@@ -2,8 +2,8 @@
 import useInfinite from "@/hooks/useInfinite";
 import React from "react";
 
-const BasicHolder = ({ children, className, url, Card , service}) => {
-  const { data, ref } = useInfinite(url, []);
+const BasicHolder = ({ children, className, url, Card , service, initial}) => {
+  const { data, ref } = useInfinite(url, initial);
 
   return (
     <section

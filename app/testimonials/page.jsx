@@ -6,15 +6,13 @@ import React from "react";
 
 const Testimonials = async () => {
   const res = await GetData(
-    "/get-contents?type=testimonials&sort=1&page=0"
+    "/get-contents?type=testimonials&sort=-1&len=20&page=0"
   );
   const data = res?.data;
 
   return (
     <CsrBg className="relative w-full min-h-screen bg-cover bg-fixed" style={{backgroundImage:"url(/assets/testimonials/bg.jpg)"}}>
       {/* Optimized Background */}
-    
-
       <section className="relative w-full min-h-screen p-8 pt-28 bg-slate-950/70">
         <TestimonialHolder>
           <div className="w-full p-4 text-4xl lg:text-6xl text-white flex flex-col items-center justify-center">
@@ -29,12 +27,8 @@ const Testimonials = async () => {
             </p>
           </div>
 
-          {[...data, ...data, ...data]?.map((elem, index) => {
-            const obj = { ...elem };
-            obj.image = obj.image?.includes("https://")
-              ? obj.image
-              : process.env.NEXT_PUBLIC_SERVER;
-            return <TestimonialCard data={obj} key={index} />;
+          {[...data]?.map((elem, index) => {
+            return <TestimonialCard data={elem} key={index} />;
           })}
         </TestimonialHolder>
       </section>

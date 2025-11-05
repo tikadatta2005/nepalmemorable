@@ -17,6 +17,10 @@ const raleway = Raleway({
   variable: "--font-raleway",
 });
 
+export const metadata =async()=>{
+  
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${roboto.variable} ${raleway.variable}`}>

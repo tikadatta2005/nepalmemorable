@@ -1,21 +1,22 @@
-import Image from "next/image";
 import React from "react";
+import CsrImage from "../reusables/assets/CsrImage";
 
 const AboutUsCard = ({ title, description, index, cover }) => {
   return (
-    <section className={`w-full p-4 py-16 ${index%2===0? "bg-white" :" bg-white"}`}>
+    <section className={`w-full p-4 py-16 ${index%2===0? "bg-gray-100" :" bg-white"}`}>
       <div
         className={`w-full max-w-7xl mx-auto p-4 justify-center gap-8 flex ${
           index % 2 === 0 ? "flex-row" : "flex-row-reverse"
         } flex-wrap`}
       >
         <div className="w-full md:w-[calc(50%-1rem)] flex flex-col justify-center">
-          <Image
+          <CsrImage
             src={cover}
             alt={title}
             width={600}
+            loading="lazy"
             height={600}
-            className="w-full object-fit h-fit rounded-xl shadow"
+            className="w-full object-cover h-fit max-h-120 min-h-80 rounded-xl shadow"
           />
         </div>
         <div className="w-full md:w-[calc(50%-1rem)] flex flex-col justify-center gap-4">

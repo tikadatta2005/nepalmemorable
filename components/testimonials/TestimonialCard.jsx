@@ -9,7 +9,7 @@ const TestimonialCard = ({ data }) => {
     <div className="w-full p-4 py-8 max-w-md bg-white shadow-md flex flex-col gap-4 rounded-lg">
       <div className="w-full flex gap-2 items-center ">
         <CsrImage
-          src={data?.image}
+          src={`${process.env.NEXT_PUBLIC_SERVER}/${data?.image}`}
           alt={data?.name || "Profile"}
           width={100}
           height={100}

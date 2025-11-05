@@ -9,12 +9,12 @@ const TestimonialHolder = ({ children }) => {
   return (
     <div className="w-full relative max-w-5xl mx-auto bg-cyan-800 min-h-[calc(100vh-8rem)]  rounded-xl shadow-xl ">
       <div className="w-20 h-20 absolute rounded-full shadow-xl -mt-11 ml-11 text-white bg-cyan-600 flex items-center justify-center">
-        <FaQuoteLeft size={30}/>
+        <FaQuoteLeft size={30} />
       </div>
       <BasicHolder
-        service="tours"
+        service="testimonials"
         className="md:grid-cols-2 p-8 lg:grid-cols-3"
-        url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=testimonials&page=:page`}
+        url={`/get-contents?type=testimonials&sort=-1&len=20&page=1`}
         Card={TestimonialCard}
       >
         {children}
