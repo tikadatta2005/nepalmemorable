@@ -1,30 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import CsrImage from "../reusables/assets/CsrImage";
+import { GetData } from "@/utils/GetData";
 
 const WhyUs = async ({ cover }) => {
-  const data = [
-    {
-      description: "Guiding Your Adventures, Guarding Your Safety",
-      icon: "/assets/home/about/shield.png",
-    },
-    {
-      description: "Tiny Teams, Massive Adventures",
-      icon: "/assets/home/about/shield.png",
-    },
-    {
-      description: "Genuine Experiences, Seamlessly Planned",
-      icon: "/assets/home/about/shield.png",
-    },
-    {
-      description: "Mitigating Risks, Maximizing Safety",
-      icon: "/assets/home/about/shield.png",
-    },
-    {
-      description: "Best price and value for money",
-      icon: "/assets/home/about/shield.png",
-    },
-  ];
+  const res = await GetData("/get-contents?type=why-us&sort=1&page=0&len=6")
+  const data = res?.data;
 
   return (
     <section className="w-full min-h-screen bg-slate-50">
@@ -49,7 +30,7 @@ const WhyUs = async ({ cover }) => {
                     height={100}
                     className="w-fit h-8"
                   />
-                  <p>{elem?.description}</p>
+                  <p>{elem?.title}</p>
                 </div>
               );
             })}
@@ -60,7 +41,11 @@ const WhyUs = async ({ cover }) => {
         <div className="relative w-full h-80 md:h-full px-4 md:px-0">
           <div className="relative w-full h-full rounded-xl shadow-xl md:rounded-none md:shadow-none overflow-hidden">
             <CsrImage
-              src={cover || "/assets/home/about/aboutus.webp"}
+              src={
+                cover
+                  ? `${process.env.NEXT_CLIENT_SERVER}/${cover}`
+                  : "/assets/home/about/aboutus.webp"
+              }
               alt="About us"
               fill
               className="object-cover"

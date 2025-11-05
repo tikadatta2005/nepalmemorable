@@ -3,8 +3,13 @@ import SlickCarousel from "../reusables/carousel/SlickCarousel";
 import TestimonialCard from "../testimonials/TestimonialCard";
 import Link from "next/link";
 import { NextCyan, PrevCyan } from "../reusables/buttons/CarouselButtons";
+import { GetData } from "@/utils/GetData";
 
 const Testimonials = async () => {
+
+  const res = await GetData("/get-contents?type=testimonials&page=0&len=6&sort=-1")
+  const data = res?.data
+
   const settings = {
     dots: false,
     infinite: true, // use infinite instead of loop
@@ -31,39 +36,6 @@ const Testimonials = async () => {
     ],
   };
 
-  const fallbackImage =
-    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
-
-  const data = [
-    {
-      _id: "1",
-      image: fallbackImage,
-      name: "Sarah Johnson",
-      description:
-        "The team made our trek unforgettable. From start to finish, everything was perfectly organized and stress-free.",
-    },
-    {
-      _id: "2",
-      image: fallbackImage,
-      name: "Michael Lee",
-      description:
-        "I’ve traveled with many companies before, but this was by far the most genuine and personal experience.",
-    },
-    {
-      _id: "3",
-      image: fallbackImage,
-      name: "Priya Sharma",
-      description:
-        "Their attention to detail and safety gave me confidence throughout the journey. Highly recommended!",
-    },
-    {
-      _id: "4",
-      image: fallbackImage,
-      name: "David Smith",
-      description:
-        "A seamless adventure filled with breathtaking moments. Can’t wait to book my next trip with them.",
-    },
-  ];
 
   return (
     <section className="p-4 py-16 bg-slate-100">

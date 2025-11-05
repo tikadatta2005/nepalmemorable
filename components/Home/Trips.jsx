@@ -4,76 +4,11 @@ import SlickCarousel from "../reusables/carousel/SlickCarousel";
 import TripCard from "../trips/TripCard";
 import Link from "next/link";
 import { NextWhite, PrevWhite } from "../reusables/buttons/CarouselButtons";
+import { GetData } from "@/utils/GetData";
 
 const Trips = async () => {
-  const data = [
-    {
-      title: "Kathmandu-Nagarkot-Bhaktapur Tour",
-      description: `
-          <p>
-            A short yet beautiful escape blending culture, history, and Himalayan views. 
-            Explore sacred temples, sunrise over Nagarkot, and the ancient charm of Bhaktapur in one refreshing tour.
-          </p>
-        `,
-      duration: "4 Days",
-      cover: "/assets/tours/ktm.jpg",
-    },
-    {
-      title: "Chitwan Jungle Safari Tour",
-      description: `
-          <p>
-            Dive into the wild! Enjoy thrilling jeep safaris, canoe rides, and cultural evenings 
-            amidst Chitwan’s lush jungles and rich wildlife. A perfect short getaway into nature.
-          </p>
-        `,
-      duration: "3 Days",
-      cover: "/assets/tours/chitwan.jpg",
-    },
-    {
-      title: "Everest Panorama Tour",
-      description: `
-          <p>
-            Fly close to the world’s highest peaks and explore scenic Himalayan villages. 
-            A compact adventure with mesmerizing Everest views and warm Sherpa hospitality.
-          </p>
-        `,
-      duration: "5 Days",
-      cover: "/assets/tours/everest.jpg",
-    },
-    {
-      title: "Annapurna Panorama Tour",
-      description: `
-          <p>
-            Enjoy a peaceful trek through the Annapurna foothills with sunrise views from Poon Hill 
-            and cultural immersion in Gurung villages. A balanced mix of comfort and adventure.
-          </p>
-        `,
-      duration: "6 Days",
-      cover: "/assets/tours/annapurna.jpg",
-    },
-    {
-      title: "Kathmandu-Lumbini-Pokhara-Kathmandu Tour",
-      description: `
-          <p>
-            A complete Nepal experience featuring heritage, spirituality, and natural beauty — 
-            from Kathmandu’s ancient temples to Lumbini’s peace and Pokhara’s serene lakes.
-          </p>
-        `,
-      duration: "7 Days",
-      cover: "/assets/tours/lumbini.jpg",
-    },
-    {
-      title: "Buddhist Heritage Tour",
-      description: `
-          <p>
-            Follow the sacred path of Lord Buddha across Nepal’s most revered monasteries and stupas. 
-            A deeply spiritual journey through peace, learning, and reflection.
-          </p>
-        `,
-      duration: "5 Days",
-      cover: "/assets/tours/buddist.jpg",
-    },
-  ];
+  const res = await GetData("/get-contents?type=tours&page=0&sort=-1&len=6")
+  const data = res?.data
 
   const settings = {
     dots: false,

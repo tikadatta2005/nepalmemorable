@@ -2,7 +2,8 @@
 export const GetData = async (url) => {
   try {
     const apiKey = process.env.NEXT_API_KEY
-    const res = await fetch(url, {
+    const server = process.env.NEXT_SERVER
+    const res = await fetch(`${server}/api/v1/client${url}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -13,7 +14,6 @@ export const GetData = async (url) => {
     if (!res.ok) {
       throw new Error(response?.error || response?.message);
     }
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

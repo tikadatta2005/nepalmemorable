@@ -1,41 +1,14 @@
 import CsrBg from "@/components/reusables/assets/CsrBg";
 import TestimonialCard from "@/components/testimonials/TestimonialCard";
 import TestimonialHolder from "@/components/testimonials/TestimonialHolder";
+import { GetData } from "@/utils/GetData";
 import React from "react";
 
 const Testimonials = async () => {
-  const fallbackImage =
-    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
-  const data = [
-    {
-      _id: "1",
-      image: fallbackImage,
-      name: "Sarah Johnson",
-      description:
-        "The team made our trek unforgettable. From start to finish, everything was perfectly organized and stress-free.",
-    },
-    {
-      _id: "2",
-      image: fallbackImage,
-      name: "Michael Lee",
-      description:
-        "I’ve traveled with many companies before, but this was by far the most genuine and personal experience.",
-    },
-    {
-      _id: "3",
-      image: fallbackImage,
-      name: "Priya Sharma",
-      description:
-        "Their attention to detail and safety gave me confidence throughout the journey. Highly recommended!",
-    },
-    {
-      _id: "4",
-      image: fallbackImage,
-      name: "David Smith",
-      description:
-        "A seamless adventure filled with breathtaking moments. Can’t wait to book my next trip with them.",
-    },
-  ];
+  const res = await GetData(
+    "/get-contents?type=testimonials&sort=1&page=0"
+  );
+  const data = res?.data;
 
   return (
     <CsrBg className="relative w-full min-h-screen bg-cover bg-fixed" style={{backgroundImage:"url(/assets/testimonials/bg.jpg)"}}>
