@@ -7,8 +7,8 @@ import { NextWhite, PrevWhite } from "../reusables/buttons/CarouselButtons";
 import { GetData } from "@/utils/GetData";
 
 const Trips = async () => {
-  const res = await GetData("/get-contents?type=tours&page=0&sort=-1&len=6")
-  const data = res?.data
+  const res = await GetData("/get-contents?type=tours&page=0&sort=-1&len=6");
+  const data = res?.data;
 
   const settings = {
     dots: false,
@@ -79,9 +79,7 @@ const Trips = async () => {
           >
             {[...data, ...data, ...data]?.map((element, index) => {
               const elem = { ...element };
-              // if (!elem?.cover?.includes("https://")) {
-              //   elem.cover = `${process.env.NEXT_PUBLIC_SERVER}${cover}`;
-              // }
+              elem.cover = `${process.env.NEXT_SERVER}/${elem.cover}`;
 
               return (
                 <div key={index} className="w-full p-1">

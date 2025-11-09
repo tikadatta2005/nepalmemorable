@@ -21,3 +21,7 @@ body {
   background-color: slategray;
   border-radius: 5px;
 }
+
+ul.li{
+  list-style: disc;
+}

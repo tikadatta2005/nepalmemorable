@@ -24,7 +24,7 @@ const WhyUs = async ({ cover }) => {
                   className="w-full transiton-all duration-300 hover:scale-105 text-sm flex flex-col gap-4 shadow-md text-slate-700 bg-white p-2 md:p-4 border-l-2 md:border-l-4 rounded-xl border-cyan-700 font-medium"
                 >
                   <CsrImage
-                    src={`${process.env.NEXT_PUBLIC_SERVER}/${elem?.icon}`}
+                    src={`${process.env.NEXT_SERVER}/${elem?.icon}`}
                     alt="icon on topic"
                     width={100}
                     height={100}
@@ -43,7 +43,7 @@ const WhyUs = async ({ cover }) => {
             <CsrImage
               src={
                 cover
-                  ? `${process.env.NEXT_CLIENT_SERVER}/${cover}`
+                  ? `${process.env.NEXT_SERVER}/${cover}`
                   : "/assets/home/about/aboutus.webp"
               }
               alt="About us"

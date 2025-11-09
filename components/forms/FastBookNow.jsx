@@ -4,9 +4,7 @@ import "./FastBook.css";
 
 const FastBookNow = ({ title, location }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    fromDate: "",
-    toDate: "",
+    email: "",message:""
   });
 
   const handleSubmit = (e) => {
@@ -24,7 +22,7 @@ const FastBookNow = ({ title, location }) => {
   return (
     <div className="w-full h-fit flex flex-col gap-4 p-6 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-xl shadow-sm">
       <h4 className="text-lg font-semibold text-slate-800 mb-2">
-        Quick Booking
+        Quick Inquiry
       </h4>
 
       <div className="flex flex-col gap-1.5">
@@ -44,35 +42,23 @@ const FastBookNow = ({ title, location }) => {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="fromDate" className="text-sm font-medium text-slate-700">
-          Check-in Date
+        <label
+          htmlFor="message"
+          className="text-sm font-medium text-slate-700"
+        >
+          Message
         </label>
-        <input
-          id="fromDate"
-          name="fromDate"
-          type="date"
-          value={formData.fromDate}
+        <textarea
+          id="message"
+          name="message"
+          type="text"
+          value={formData.message}
           onChange={handleChange}
+          placeholder="Your message"
           required
-          className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
+          className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg h-20 text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
         />
       </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="toDate" className="text-sm font-medium text-slate-700">
-          Check-out Date
-        </label>
-        <input
-          id="toDate"
-          name="toDate"
-          type="date"
-          value={formData.toDate}
-          onChange={handleChange}
-          required
-          className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-slate-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
-        />
-      </div>
-
       <button
         type="submit"
         onClick={handleSubmit}
@@ -83,7 +69,7 @@ const FastBookNow = ({ title, location }) => {
           focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2
           animate-pulse-glow active:scale-[0.98]"
       >
-        <span className="relative z-10">Book Now</span>
+        <span className="relative z-10">Inquire Now</span>
 
         {/* Shimmer Effect */}
         <span

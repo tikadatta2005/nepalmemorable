@@ -8,7 +8,7 @@ const CardBook = ({ data, service }) => {
       {/* Image */}
       <div className="w-full md:w-1/3 relative h-64 md:h-auto flex-shrink-0">
         <CsrImage
-          src={data?.cover}
+          src={`${process.env.NEXT_PUBLIC_SERVER || process.env.NEXT_SERVER }/${data?.cover}`}
           alt={data?.title}
           fill
           className="object-cover"

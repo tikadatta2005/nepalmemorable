@@ -24,7 +24,7 @@ const useInfinite = (url, initialPage=0) => {
 
       if (res?.error) {
         throw new Error(
-          res?.message || `HTTP error! status: ${res.status}`
+          res?.message || `HTTP error! status: ${res?.status || ""}`
         );
       }
 
