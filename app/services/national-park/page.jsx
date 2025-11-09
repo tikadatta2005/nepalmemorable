@@ -36,12 +36,10 @@ export const metadata = () => {
   };
 };
 
-
 const NationalParkTrip = async () => {
-  const res = await GetData(
-    "/get-contents?type=national-park&sort=1&page=0"
-  );
+  const res = await GetData("/get-contents?type=national-park&sort=1&page=0");
   const data = res?.data;
+
   return (
     <main className="w-full bg-gray-50">
       {/* Banner */}
@@ -64,7 +62,7 @@ const NationalParkTrip = async () => {
         {/* Cards */}
         <div className="w-full md:w-3/4 space-y-6">
           <NpHolder>
-            {data?.data?.map((elem, index) => (
+            {data?.map((elem, index) => (
               <CardBook data={elem} key={index} service="national-park-trips" />
             ))}
           </NpHolder>
@@ -80,5 +78,8 @@ const NationalParkTrip = async () => {
     </main>
   );
 };
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export default NationalParkTrip;

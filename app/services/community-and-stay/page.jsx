@@ -65,7 +65,7 @@ const CommunityHomestay = async () => {
         {/* Cards */}
         <div className="w-full md:w-3/4 space-y-6">
           <CommunityHolder>
-            {data?.data?.map((elem, index) => (
+            {data?.map((elem, index) => (
               <CardBook data={elem} key={index} service="community-homestay" />
             ))}
           </CommunityHolder>
@@ -81,5 +81,9 @@ const CommunityHomestay = async () => {
     </main>
   );
 };
+
+
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export default CommunityHomestay;
