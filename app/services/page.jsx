@@ -1,6 +1,7 @@
 import Banner3 from "@/components/reusables/banners/Banner3";
 import Card1 from "@/components/reusables/cards/Card1";
 import BasicHolder from "@/components/reusables/holder/BasicHolder";
+import ServHolder from "@/components/services/ServHolder";
 import { GetData } from "@/utils/GetData";
 import React from "react";
 
@@ -51,7 +52,7 @@ const Services = async () => {
     },
   ];
 
-  const data = [...basicData, ...(Array.isArray(res?.data) ? res?.data : [])];
+  const data = [...(Array.isArray(res?.data) ? res?.data : [])];
 
   return (
     <main className="w-full bg-slate-50 min-h-screen">
@@ -60,8 +61,8 @@ const Services = async () => {
         title="Explore Nepal – Treks & Tours of a Lifetime"
         description="Discover the beauty of Nepal with Nepal Memorable. From breathtaking Himalayan treks to cultural tours, we craft unforgettable adventures that let you experience nature, tradition, and adventure all in one journey."
       />
-      <BasicHolder Card={Card1} initial={1} url='/get-contents?type=services&sort=-1&page:page0&len=20' className="w-full max-w-7xl mx-auto p-4 py-8 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {data?.map((elem, index) => {
+      <ServHolder>
+        {basicData?.map((elem, index) => {
           return (
             <Card1
               key={index}
@@ -69,14 +70,23 @@ const Services = async () => {
               cover={elem?.cover}
               link={
                 elem?.link ||
-                `/services/${elem?.title
-                  ?.replaceAll(" ", "-")
-                  ?.toLowerCase()}?_id=${elem?._id}`
+                `/services/${elem?.title?.replaceAll(" ", "-")?.toLowerCase()}`
+              }
+            />
+          );
+        })}{data?.map((elem, index) => {
+          return (
+            <Card1
+              key={index}
+              title={elem?.title}
+              cover={elem?.cover}
+              link={
+                `/services/${elem?._id}`
               }
             />
           );
         })}
-      </BasicHolder>
+      </ServHolder>
     </main>
   );
 };
