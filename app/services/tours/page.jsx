@@ -1,9 +1,9 @@
 import TourHolder from "@/components/tours/TourHolder";
-import FastBookNowSmall from "@/components/forms/FastBookNow";
 import Banner1 from "@/components/reusables/banners/Banner1";
 import CardBook from "@/components/reusables/cards/CardBook";
 import React from "react";
 import { GetData } from "@/utils/GetData";
+import FastBookNow from "@/components/forms/FastBookNow";
 
 const meta = {
   title: "Tours in Nepal",
@@ -71,7 +71,7 @@ const Tours = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNowSmall />
+            <FastBookNow title={"Tours"} location={`https://www.nepalmemorable.com/services/tours`}/>
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ const page = async ({ params }) => {
 
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow />
+            <FastBookNow title={data?.title} location={`https://www.nepalmemorable.com/services/hiking/${id}`}/>
           </div>
         </div>
       </div>

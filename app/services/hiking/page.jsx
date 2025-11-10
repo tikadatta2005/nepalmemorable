@@ -1,4 +1,4 @@
-import FastBookNowSmall from "@/components/forms/FastBookNow";
+import FastBookNow from "@/components/forms/FastBookNow";
 import HikingHolder from "@/components/hiking/HikingHolder";
 import Banner1 from "@/components/reusables/banners/Banner1";
 import CardBook from "@/components/reusables/cards/CardBook";
@@ -69,7 +69,7 @@ const Hiking = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNowSmall />
+            <FastBookNow title={"Hiking"} location={`https://www.nepalmemorable.com/services/hiking`}/>
           </div>
         </div>
       </div>

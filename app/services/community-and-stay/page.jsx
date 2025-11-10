@@ -1,4 +1,3 @@
-import FastBookNowSmall from "@/components/forms/FastBookNow";
 import CommunityHolder from "@/components/community/CommunityHolder";
 import Banner1 from "@/components/reusables/banners/Banner1";
 import CardBook from "@/components/reusables/cards/CardBook";
@@ -74,7 +73,7 @@ const CommunityHomestay = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNowSmall />
+            <FastBookNow title={"Home Stay"} location={`https://www.nepalmemorable.com/services/community-and-stay`}/>
           </div>
         </div>
       </div>

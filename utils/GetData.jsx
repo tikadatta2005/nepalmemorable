@@ -35,7 +35,6 @@ export const PostData = async (url, { body }) => {
     if (!res.ok) {
       throw new Error(response?.error || response?.message);
     }
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);

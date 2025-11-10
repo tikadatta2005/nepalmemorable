@@ -1,4 +1,4 @@
-import FastBookNowSmall from "@/components/forms/FastBookNow";
+import FastBookNow from "@/components/forms/FastBookNow";
 import NpHolder from "@/components/NationalParkTrip/NpHolder";
 import Banner1 from "@/components/reusables/banners/Banner1";
 import CardBook from "@/components/reusables/cards/CardBook";
@@ -71,7 +71,7 @@ const NationalParkTrip = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNowSmall />
+            <FastBookNow title={"National Parks"} location={`https://www.nepalmemorable.com/services/national-park`}/>
           </div>
         </div>
       </div>
