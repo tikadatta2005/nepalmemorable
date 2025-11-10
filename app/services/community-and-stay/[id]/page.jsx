@@ -1,4 +1,5 @@
 import FastBookNow from "@/components/forms/FastBookNow";
+import NotFoundPage from "@/components/reusables/404/NotFound";
 import CsrImage from "@/components/reusables/assets/CsrImage";
 import List1 from "@/components/reusables/lists/List1";
 import { GetData } from "@/utils/GetData";
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: data?.title || "Default Title",
       description: data?.description || "Default Description",
-      url: `https://www.nepalmemorable.com/services/home-stay/${id}`,
+      url: `https://www.nepalmemorable.com/services/commuity-and-stay/${id}`,
       type: "article",
       images: [
         {
@@ -33,6 +34,8 @@ const page = async ({ params }) => {
   const { id } = await params;
   const res = await GetData(`/get-content/${id}?type=home-stay`);
   const data = await res?.data;
+
+  if(!data) return <NotFoundPage/>
 
   return (
     <main className="w-full min-h-screen bg-white">
@@ -54,17 +57,31 @@ const page = async ({ params }) => {
             className="w-full text-lg text-black"
             dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
           ></div>
-          <p>
-            <strong>Duration : </strong>
-            {data?.duration}
-          </p>
-
-          {data?.lists && (
-            <div
-              className="sr-only"
-              dangerouslySetInnerHTML={{ __html: `${data?.lists}` }}
-            ></div>
+          {data?.location && (
+            <p>
+              <strong>Location : </strong>
+              {data?.location}
+            </p>
           )}
+          {data?.height && (
+            <p>
+              <strong>Height : </strong>
+              {data?.height}
+            </p>
+          )}
+          {data?.season && (
+            <p>
+              <strong>Season : </strong>
+              {data?.season}
+            </p>
+          )}
+          {data?.duration && (
+            <p>
+              <strong>Duration : </strong>
+              {data?.duration}
+            </p>
+          )}
+          
           {data?.lists && <List1 data={data?.lists} />}
 
           {/* content loading */}
@@ -76,12 +93,17 @@ const page = async ({ params }) => {
 
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={data?.title} location={`https://www.nepalmemorable.com/services/community-and-stay/${id}`}/>
+            <FastBookNow
+              title={data?.title}
+              location={`https://www.nepalmemorable.com/services/community-and-stay/${id}`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
+export const revalidate = 300;
+
 
 export default page;

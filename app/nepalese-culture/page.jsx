@@ -65,4 +65,7 @@ const Culture = async () => {
   );
 };
 
+
+export const revalidate = 300;
+
 export default Culture;

@@ -1,4 +1,5 @@
 import FastBookNow from "@/components/forms/FastBookNow";
+import NotFoundPage from "@/components/reusables/404/NotFound";
 import CsrImage from "@/components/reusables/assets/CsrImage";
 import List1 from "@/components/reusables/lists/List1";
 import { GetData } from "@/utils/GetData";
@@ -34,6 +35,8 @@ const page = async ({ params }) => {
   const res = await GetData(`/get-content/${id}?type=national-park`);
   const data = await res?.data;
 
+  if(!data) return <NotFoundPage/>
+
   return (
     <main className="w-full min-h-screen bg-white">
       <CsrImage
@@ -54,10 +57,18 @@ const page = async ({ params }) => {
             className="w-full text-lg text-black"
             dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
           ></div>
-          <p>
-            <strong>Duration : </strong>
-            {data?.duration}
-          </p>
+          {data?.location && (
+            <p>
+              <strong>Location : </strong>
+              {data?.location}
+            </p>
+          )}
+          {data?.season && (
+            <p>
+              <strong>Season : </strong>
+              {data?.season}
+            </p>
+          )}
 
           {data?.lists && (
             <div
@@ -76,12 +87,16 @@ const page = async ({ params }) => {
 
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={data?.title} location={`https://www.nepalmemorable.com/services/nationa-park/${id}`}/>
+            <FastBookNow
+              title={data?.title}
+              location={`https://www.nepalmemorable.com/services/nationa-park/${id}`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
+export const revalidate = 300;
 
 export default page;

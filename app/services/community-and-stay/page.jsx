@@ -3,6 +3,7 @@ import Banner1 from "@/components/reusables/banners/Banner1";
 import CardBook from "@/components/reusables/cards/CardBook";
 import React from "react";
 import { GetData } from "@/utils/GetData";
+import FastBookNow from "@/components/forms/FastBookNow";
 
 const meta = {
   title: "Community & Homestay in Nepal",
@@ -65,7 +66,7 @@ const CommunityHomestay = async () => {
         <div className="w-full md:w-3/4 space-y-6">
           <CommunityHolder>
             {data?.map((elem, index) => (
-              <CardBook data={elem} key={index} service="community-homestay" />
+              <CardBook data={elem} key={index} service="community-and-stay" />
             ))}
           </CommunityHolder>
         </div>
@@ -82,7 +83,6 @@ const CommunityHomestay = async () => {
 };
 
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default CommunityHomestay;

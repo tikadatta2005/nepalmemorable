@@ -1,4 +1,5 @@
 import FastBookNow from "@/components/forms/FastBookNow";
+import NotFoundPage from "@/components/reusables/404/NotFound";
 import CsrImage from "@/components/reusables/assets/CsrImage";
 import List1 from "@/components/reusables/lists/List1";
 import { GetData } from "@/utils/GetData";
@@ -33,7 +34,7 @@ const page = async ({ params }) => {
   const { id } = await params;
   const res = await GetData(`/get-content/${id}?type=hiking`);
   const data = await res?.data;
-
+  if (!data) return <NotFoundPage />;
   return (
     <main className="w-full min-h-screen bg-white">
       <CsrImage
@@ -50,14 +51,26 @@ const page = async ({ params }) => {
           <h1 className="w-full text-4xl text-cyan-700 font-bold">
             {data?.title}
           </h1>
-          <p className="w-fit p-2 px-4 rounded-full text-sm font-bold text-white bg-cyan-700">
-            {data?.highlight}
-          </p>
 
-         {data?.lists && <div
-            className="sr-only"
-            dangerouslySetInnerHTML={{ __html: `${data?.lists}` }}
-          ></div>}
+          {data?.location && (
+            <p>
+              <strong>Location : </strong>
+              {data?.location}
+            </p>
+          )}
+          {data?.height && (
+            <p>
+              <strong>Height : </strong>
+              {data?.height}
+            </p>
+          )}
+          {data?.season && (
+            <p>
+              <strong>Season : </strong>
+              {data?.season}
+            </p>
+          )}
+
           {data?.lists && <List1 data={data?.lists} />}
 
           {/* content loading */}
@@ -69,12 +82,16 @@ const page = async ({ params }) => {
 
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={data?.title} location={`https://www.nepalmemorable.com/services/hiking/${id}`}/>
+            <FastBookNow
+              title={data?.title}
+              location={`https://www.nepalmemorable.com/services/hiking/${id}`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
+export const revalidate = 300;
 
 export default page;

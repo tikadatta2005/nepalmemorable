@@ -5,8 +5,8 @@ import WhyUs from "@/components/Home/WhyUs";
 import { GetData } from "@/utils/GetData";
 import React from "react";
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
 
 const Home = async () => {
   const res = await GetData("/web-details")

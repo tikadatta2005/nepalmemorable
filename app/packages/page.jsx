@@ -2,10 +2,7 @@ import React from "react";
 import Banner3 from "@/components/reusables/banners/Banner3";
 import PackageCards from "@/components/reusables/cards/PackageCards";
 import { GetData } from "@/utils/GetData";
-import BasicHolder from "@/components/reusables/holder/BasicHolder";
-
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+import PkgHolder from "@/components/packages/PkgHolder";
 
 const meta = {
   title: "Nepal Tour & Trek Packages",
@@ -50,19 +47,14 @@ const Packages = async () => {
         title={meta?.title}
         description={meta?.description}
       />
-      <BasicHolder
-        service="national-park"
-        url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=packages&page=:page&len=20`}
-        Card={PackageCards}
-        className="w-full max-w-7xl mx-auto p-4 py-8 gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-        initial={1}
-      >
+      <PkgHolder>
         {data?.map((elem, index) => {
           return <PackageCards data={elem} key={index} />;
         })}
-      </BasicHolder>
+      </PkgHolder>
     </main>
   );
 };
+export const revalidate = 300;
 
 export default Packages;

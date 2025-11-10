@@ -34,12 +34,16 @@ const page = async ({ params }) => {
   const res = await GetData(`/get-content/${id}?type=services`);
   const data = await res?.data;
 
+  if(!data) return <NotFoundPage/>
+
   return (
-     <main className="w-full bg-gray-50">
+    <main className="w-full bg-gray-50">
       {/* Banner */}
       <Banner1
         title={data?.title}
-        cover={`${process.env.NEXT_SERVER || process.env.NEXT_PUBLIC_SERVER}/${data?.cover}`}
+        cover={`${process.env.NEXT_SERVER || process.env.NEXT_PUBLIC_SERVER}/${
+          data?.cover
+        }`}
         description={data?.description}
       />
 
@@ -53,17 +57,31 @@ const page = async ({ params }) => {
             className="w-full text-lg text-black"
             dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
           ></div>
-          <p>
-            <strong>Duration : </strong>
-            {data?.duration}
-          </p>
-
-          {data?.lists && (
-            <div
-              className="sr-only"
-              dangerouslySetInnerHTML={{ __html: `${data?.lists}` }}
-            ></div>
+          {data?.location && (
+            <p>
+              <strong>Location : </strong>
+              {data?.location}
+            </p>
           )}
+          {data?.height && (
+            <p>
+              <strong>Height : </strong>
+              {data?.height}
+            </p>
+          )}
+          {data?.season && (
+            <p>
+              <strong>Season : </strong>
+              {data?.season}
+            </p>
+          )}
+          {data?.duration && (
+            <p>
+              <strong>Duration : </strong>
+              {data?.duration}
+            </p>
+          )}
+
           {data?.lists && <List1 data={data?.lists} />}
 
           {/* content loading */}
@@ -75,12 +93,16 @@ const page = async ({ params }) => {
 
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={data?.title} location={`https://www.nepalmemorable.com/services/${id}`}/>
+            <FastBookNow
+              title={data?.title}
+              location={`https://www.nepalmemorable.com/services/${id}`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
+export const revalidate = 300;
 
 export default page;

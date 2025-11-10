@@ -77,7 +77,6 @@ const Hiking = async () => {
   );
 };
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default Hiking;

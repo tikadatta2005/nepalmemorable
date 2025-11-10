@@ -4,8 +4,7 @@ import Banner2 from "@/components/reusables/banners/Banner2";
 import { GetData } from "@/utils/GetData";
 import React from "react";
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 const AboutUs = async () => {
   const res = await GetData(
@@ -56,5 +55,6 @@ const AboutUs = async () => {
     </main>
   );
 };
+
 
 export default AboutUs;

@@ -63,7 +63,7 @@ const NationalParkTrip = async () => {
         <div className="w-full md:w-3/4 space-y-6">
           <NpHolder>
             {data?.map((elem, index) => (
-              <CardBook data={elem} key={index} service="national-park-trips" />
+              <CardBook data={elem} key={index} service="national-park" />
             ))}
           </NpHolder>
         </div>
@@ -79,7 +79,6 @@ const NationalParkTrip = async () => {
   );
 };
 
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default NationalParkTrip;

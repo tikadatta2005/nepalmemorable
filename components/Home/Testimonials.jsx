@@ -6,9 +6,10 @@ import { NextCyan, PrevCyan } from "../reusables/buttons/CarouselButtons";
 import { GetData } from "@/utils/GetData";
 
 const Testimonials = async () => {
-
-  const res = await GetData("/get-contents?type=testimonials&page=0&len=6&sort=-1")
-  const data = res?.data
+  const res = await GetData(
+    "/get-contents?type=testimonials&page=0&len=6&sort=-1"
+  );
+  const data = res?.data;
 
   const settings = {
     dots: false,
@@ -36,7 +37,6 @@ const Testimonials = async () => {
     ],
   };
 
-
   return (
     <section className="p-4 py-16 bg-slate-100">
       <div className="w-full mx-auto max-w-7xl px-4">
@@ -56,9 +56,7 @@ const Testimonials = async () => {
           >
             {[...data, ...data, ...data]?.map((elem, index) => {
               const obj = { ...elem };
-              obj.image = obj.image?.includes("https://")
-                ? obj?.image
-                : process.env.NEXT_PUBLIC_SERVER;
+              console.log(obj?.image)
 
               return (
                 <div className="p-2 py-4" key={index}>

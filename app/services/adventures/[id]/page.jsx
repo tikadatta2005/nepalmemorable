@@ -1,4 +1,5 @@
 import FastBookNow from "@/components/forms/FastBookNow";
+import NotFoundPage from "@/components/reusables/404/NotFound";
 import CsrImage from "@/components/reusables/assets/CsrImage";
 import List1 from "@/components/reusables/lists/List1";
 import { GetData } from "@/utils/GetData";
@@ -33,7 +34,7 @@ const page = async ({ params }) => {
   const { id } = await params;
   const res = await GetData(`/get-content/${id}?type=adventures`);
   const data = await res?.data;
-
+if(!data) return <NotFoundPage/>
   return (
     <main className="w-full min-h-screen bg-white">
       <CsrImage
@@ -55,8 +56,11 @@ const page = async ({ params }) => {
             dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
           ></div>
           <p>
-            <strong>Duration : </strong>
-            {data?.duration}
+            <strong>Location : </strong>
+            {data?.location}
+          </p><p>
+            <strong>Season : </strong>
+            {data?.season}
           </p>
 
           {data?.lists && (
@@ -83,5 +87,6 @@ const page = async ({ params }) => {
     </main>
   );
 };
+export const revalidate = 300;
 
 export default page;

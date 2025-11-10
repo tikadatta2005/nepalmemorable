@@ -5,11 +5,13 @@ import { FaStar } from "react-icons/fa";
 import CsrImage from "../reusables/assets/CsrImage";
 
 const TestimonialCard = ({ data }) => {
+
+  console.log(data)
   return (
     <div className="w-full p-4 py-8 max-w-md bg-white shadow-md flex flex-col gap-4 rounded-lg">
       <div className="w-full flex gap-2 items-center ">
         <CsrImage
-          src={`${process.env.NEXT_PUBLIC_SERVER}/${data?.image}`}
+          src={`${process.env.NEXT_PUBLIC_SERVER || process.env.NEXT_SERVER}/${data?.image}`}
           alt={data?.name || "Profile"}
           width={100}
           height={100}
@@ -27,7 +29,10 @@ const TestimonialCard = ({ data }) => {
         ))}
       </div>
 
-      <p className="w-full line-clamp-3">{data?.description}</p>
+      <div
+        className="w-full line-clamp-3"
+        dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
+      />
       <Link
         href={`/testimonials/${data?._id}`}
         className="w-fit h-fit cursor-pointer"

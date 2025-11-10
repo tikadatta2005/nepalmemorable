@@ -1,4 +1,5 @@
 import FastBookNow from "@/components/forms/FastBookNow";
+import NotFoundPage from "@/components/reusables/404/NotFound";
 import CsrImage from "@/components/reusables/assets/CsrImage";
 import { GetData } from "@/utils/GetData";
 import React from "react";
@@ -32,6 +33,8 @@ const page = async ({ params }) => {
   const { id } = await params;
   const res = await GetData(`/get-content/${id}?type=trekking`);
   const data = await res?.data;
+
+  if(!data) return <NotFoundPage/>
 
   return (
     <main className="w-full min-h-screen bg-white">
@@ -78,4 +81,5 @@ const page = async ({ params }) => {
   );
 };
 
+export const revalidate = 300;
 export default page;

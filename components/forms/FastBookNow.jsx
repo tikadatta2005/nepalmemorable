@@ -10,7 +10,7 @@ const FastBookNow = ({ title, location }) => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [message, setMessage] = useState({
     success: null,
@@ -21,7 +21,7 @@ const FastBookNow = ({ title, location }) => {
     e.preventDefault();
     setLoading(true);
     const body = new FormData();
-    body.append("from", data?.email);
+    body.append("from", formData?.email);
     body.append(
       "text",
       `
@@ -29,7 +29,7 @@ const FastBookNow = ({ title, location }) => {
       Title : ${title}
       url : ${location}
 
-      ${data?.message}`
+      ${formData?.message}`
     );
     body.append("subject", `Message from webiste:${title}`);
     const res = await PostData(
