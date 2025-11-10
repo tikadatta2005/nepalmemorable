@@ -55,12 +55,9 @@ const Testimonials = async () => {
             PrevButton={PrevCyan}
           >
             {[...data, ...data, ...data]?.map((elem, index) => {
-              const obj = { ...elem };
-              console.log(obj?.image)
-
               return (
                 <div className="p-2 py-4" key={index}>
-                  <TestimonialCard data={obj} />
+                  <TestimonialCard data={elem} />
                 </div>
               );
             })}

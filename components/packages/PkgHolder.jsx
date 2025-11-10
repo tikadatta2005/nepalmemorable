@@ -9,9 +9,7 @@ const PkgHolder = ({ children }) => {
 
   return (
     <section
-      service="national-park"
       className="w-full max-w-7xl mx-auto p-4 py-8 gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-      initial={1}
     >
       {children}
       {Array?.isArray(data) &&

@@ -12,7 +12,7 @@ const TripCard = ({ data }) => {
     >
       <div className="w-full relative h-72 rounded-md overflow-hidden">
         <CsrImage
-          src={cover}
+          src={`${process.env.NEXT_SERVER || process.env.NEXT_PUBLIC_SERVER}/${cover}`}
           width={300}
           height={300}
           alt={title}

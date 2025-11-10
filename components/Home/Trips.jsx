@@ -78,12 +78,10 @@ const Trips = async () => {
             NextButton={NextWhite}
           >
             {[...data, ...data, ...data]?.map((element, index) => {
-              const elem = { ...element };
-              elem.cover = `${process.env.NEXT_SERVER}/${elem.cover}`;
 
               return (
                 <div key={index} className="w-full p-1">
-                  <TripCard data={elem} />
+                  <TripCard data={element} />
                 </div>
               );
             })}
