@@ -37,7 +37,7 @@ export const metadata = () => {
 };
 
 const NationalParkTrip = async () => {
-  const res = await GetData("/get-contents?type=national-park&sort=1&page=0&len=20");
+  const res = await GetData("/get-contents?type=national-park&sort=-1&page=0&len=20");
   const data = res?.data;
 
   return (

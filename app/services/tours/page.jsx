@@ -38,7 +38,7 @@ export const metadata = () => {
 
 
 const Tours = async () => {
-  const res = await GetData("/get-contents?type=tours&sort=1&page=0&len=20");
+  const res = await GetData("/get-contents?type=tours&sort=-1&page=0&len=20");
   const data = res?.data;
   return (
     <main className="w-full bg-gray-50">

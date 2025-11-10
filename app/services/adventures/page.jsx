@@ -37,7 +37,7 @@ export const metadata = () => {
 
 const Adventures = async () => {
   const res = await GetData(
-    "/get-contents?type=adventures&sort=1&page=0&len=20"
+    "/get-contents?type=adventures&sort=-1&page=0&len=20"
   );
   const data = res?.data;
 
