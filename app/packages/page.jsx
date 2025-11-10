@@ -2,6 +2,7 @@ import React from "react";
 import Banner3 from "@/components/reusables/banners/Banner3";
 import PackageCards from "@/components/reusables/cards/PackageCards";
 import { GetData } from "@/utils/GetData";
+import BasicHolder from "@/components/reusables/holder/BasicHolder";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
@@ -37,10 +38,9 @@ export const metadata = () => {
   };
 };
 
-
 const Packages = async () => {
   const res = await GetData(
-    "/get-contents?type=packages&sort=-1&page=0"
+    "/get-contents?type=packages&sort=-1&page=0&len=20"
   );
   const data = res?.data;
   return (
@@ -50,11 +50,17 @@ const Packages = async () => {
         title={meta?.title}
         description={meta?.description}
       />
-      <section className="w-full max-w-7xl mx-auto p-4 py-8 gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <BasicHolder
+        service="national-park"
+        url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=packages&page=:page&len=20`}
+        Card={PackageCards}
+        className="w-full max-w-7xl mx-auto p-4 py-8 gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
+        initial={1}
+      >
         {data?.map((elem, index) => {
           return <PackageCards data={elem} key={index} />;
         })}
-      </section>
+      </BasicHolder>
     </main>
   );
 };

@@ -38,7 +38,7 @@ export const metadata = () => {
 
 const Trekking = async () => {
   const res = await GetData(
-    "/get-contents?type=trekking&sort=1&page=0"
+    "/get-contents?type=trekking&sort=1&page=0&len=20"
   );
   const data = res?.data;
 

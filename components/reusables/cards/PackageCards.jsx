@@ -8,7 +8,7 @@ const PackageCards = ({ data }) => {
       <div className="w-full">
         <div className="w-full h-42 overflow-hidden">
           <CsrImage
-            src={data?.cover}
+            src={`${process.env.NEXT_SERVER || process.env.NEXT_PUBLIC_SERVER}/${data?.cover}`}
             width={450}
             height={200}
             alt={data?.title}
@@ -21,16 +21,16 @@ const PackageCards = ({ data }) => {
             <span>{data?.highlight}</span>
           </div>
           <div className="w-full flex flex-col py-4 text-center">
-            <h3 className="w-full text-2xl pb-2 text-slate-800">
+            <h3 className="w-full text-2xl pb-2 font-bold text-slate-800">
               {data?.title}
             </h3>
-            <p className="w-full text-lg font-semibold text-slate-700">
+            <p className="w-full text-lg font-medium text-slate-700">
               {data?.subtitle}
             </p>
           </div>
           <div
-            className="w-full text-slate-600 px-8 py-2 pb-8 text-sm"
-            dangerouslySetInnerHTML={{ __html: `${data?.features}` }}
+            className="w-full text-slate-600 px-8 py-2 flex flex-col gap-0 pb-8 text-sm"
+            dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
           ></div>
         </div>
       </div>

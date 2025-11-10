@@ -8,7 +8,7 @@ const meta = {
   title: "Hiking in Nepal",
   description:
     "Nepal — the land of trails. From peaceful hill walks to scenic ridge hikes, discover routes that bring you closer to mountains, culture, and nature.",
-  content: `<p>Hiking in Nepal offers the perfect balance of adventure, culture, and natural beauty. Unlike long treks, these routes are shorter and easier, designed for anyone who wants to enjoy Nepal’s stunning landscapes without extreme altitude or long travel days.</p><br/><p>From panoramic viewpoints near Kathmandu to lakeside trails in Pokhara, every hike lets you experience the Himalayas up close. Walk through rhododendron forests, visit ancient monasteries, and meet friendly locals — all within a few days’ journey.</p>`,
+  content: `<p>Hiking around the Kathmandu Valley can be the best option for the tourists visiting Nepal for a short period of time. In case, if they don’t have much time or energy to trek further afield, they can still experience hiking for one or more days around Kathmandu’s hills and small settlements. The sub-alpine forests and quiet countryside make for a great short break from the hustle and bustle of city life. Most of the hikes can be carried out in a single day. They are suitable for children and older people as well.</p>`,
   cover: "/assets/services/hiking.jpg",
 };
 
@@ -36,9 +36,7 @@ export const metadata = () => {
 };
 
 const Hiking = async () => {
-  const res = await GetData(
-    "/get-contents?type=hiking&sort=1&page=0"
-  );
+  const res = await GetData("/get-contents?type=hiking&sort=1&page=0&len=20");
   const data = res?.data;
   return (
     <main className="w-full bg-gray-50">
@@ -62,7 +60,7 @@ const Hiking = async () => {
         {/* Cards */}
         <div className="w-full md:w-3/4 space-y-6">
           <HikingHolder>
-            {data?.data?.map((elem, index) => (
+            {data?.map((elem, index) => (
               <CardBook data={elem} key={index} service="hiking" />
             ))}
           </HikingHolder>
@@ -78,7 +76,6 @@ const Hiking = async () => {
     </main>
   );
 };
-
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";

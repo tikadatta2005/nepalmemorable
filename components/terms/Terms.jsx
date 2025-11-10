@@ -4,7 +4,7 @@ import React from 'react'
 import Banner1 from '../reusables/banners/Banner1';
 
 const Terms = () => {
-  const {data, ref} = useInfinite("/get-contents?type=terms&sort=1&page=:page", 0)
+  const {data, ref} = useInfinite("/get-contents?type=terms&sort=1&page=:page&len=20", 0)
   return (
     <main className="w-full flex flex-col">
       <Banner1

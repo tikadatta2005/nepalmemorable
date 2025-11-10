@@ -9,8 +9,9 @@ const AdventureHolder = ({ children }) => {
     <BasicHolder
     service="adventures"
       className=""
-      url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=adventures&page=:page`}
+      url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=adventures&page=:page&len=20`}
       Card={CardBook}
+      initial={1}
     >
       {children}
     </BasicHolder>

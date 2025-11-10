@@ -76,7 +76,7 @@ const Nav = () => {
       <header
         className={`w-full p-2 px-4 text-base fixed top-0 z-50 left-0 right-0 ${
           isScrolled
-            ? "bg-white/90 backdrop-blur-sm text-slate-700"
+            ? "bg-white/90 backdrop-blur-sm text-slate-700 shadow-lg"
             : "bg-gradient-to-b from-cyan-950/80 to-transparent text-white"
         }`}
       >

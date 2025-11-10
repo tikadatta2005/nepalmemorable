@@ -39,7 +39,7 @@ const page = async ({ params }) => {
         alt={data?.title}
         src={`${process.env.NEXT_SERVER}/${data?.cover}`}
         width={1200}
-        className="w-full h-120 object-cover shadow"
+        className="w-full h-150 object-cover shadow"
         height={700}
       />
 

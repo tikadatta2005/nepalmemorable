@@ -13,7 +13,9 @@ const List1 = ({ data }) => {
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(data, "text/html");
-    const items = doc.querySelectorAll("ol > li");
+    const items = doc.querySelectorAll("ol > li , ul > li");
+
+    console.log(items)
 
     const parsedList = Array.from(items).map((li) => {
       // Extract title
@@ -31,8 +33,6 @@ const List1 = ({ data }) => {
 
     setList(parsedList);
   }, [data]);
-
-  console.log(list);
 
   const [expandedDay, setExpandedDay] = useState(0);
 

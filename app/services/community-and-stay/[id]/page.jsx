@@ -6,7 +6,7 @@ import React from "react";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const res = await GetData(`/get-content/${id}?type=tours`);
+  const res = await GetData(`/get-content/${id}?type=home-stay`);
   const data = res?.data;
   const coverImage = `${process.env.NEXT_SERVER}/${data?.cover}`;
   return {
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: data?.title || "Default Title",
       description: data?.description || "Default Description",
-      url: `https://www.nepalmemorable.com/services/tours/${id}`,
+      url: `https://www.nepalmemorable.com/services/home-stay/${id}`,
       type: "article",
       images: [
         {
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { id } = await params;
-  const res = await GetData(`/get-content/${id}?type=tours`);
+  const res = await GetData(`/get-content/${id}?type=home-stay`);
   const data = await res?.data;
 
   return (

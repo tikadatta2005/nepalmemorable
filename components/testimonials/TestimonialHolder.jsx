@@ -16,6 +16,7 @@ const TestimonialHolder = ({ children }) => {
         className="md:grid-cols-2 p-8 lg:grid-cols-3"
         url={`/get-contents?type=testimonials&sort=-1&len=20&page=1`}
         Card={TestimonialCard}
+        initial={1}
       >
         {children}
       </BasicHolder>

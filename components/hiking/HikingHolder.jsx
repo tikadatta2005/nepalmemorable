@@ -9,8 +9,9 @@ const HikingHolder = ({ children }) => {
     <BasicHolder
     service="national-park"
       className=""
-      url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=hiking&page=:page`}
+      url={`${process.env.NEXT_PUBLIC_SERVER}/api/v1/client/get-contents?type=hiking&page=:page&len=20`}
       Card={CardBook}
+      initial={1}
     >
       {children}
     </BasicHolder>

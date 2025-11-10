@@ -39,7 +39,7 @@ export const metadata = () => {
 
 const CommunityHomestay = async () => {
   const res = await GetData(
-    "/get-contents?type=home-stay&sort=1&page=0"
+    "/get-contents?type=home-stay&sort=1&page=0&len=20"
   );
   const data = res?.data;
 
