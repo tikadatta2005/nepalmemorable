@@ -1,6 +1,5 @@
 import Banner3 from "@/components/reusables/banners/Banner3";
 import Card1 from "@/components/reusables/cards/Card1";
-import BasicHolder from "@/components/reusables/holder/BasicHolder";
 import ServHolder from "@/components/services/ServHolder";
 import { GetData } from "@/utils/GetData";
 import React from "react";

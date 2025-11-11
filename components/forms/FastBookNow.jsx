@@ -32,6 +32,7 @@ const FastBookNow = ({ title, location }) => {
       ${formData?.message}`
     );
     body.append("subject", `Message from webiste:${title}`);
+    console.log(NEXT_PUBLIC_MAIL_SERVER)
     const res = await PostData(
       `${process.env.NEXT_PUBLIC_MAIL_SERVER}/api/v1/client/send-mail`,
       { body }

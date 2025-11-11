@@ -19,7 +19,7 @@ const Hero = ({ title }) => {
         loop
         muted
         playsInline
-        src="/assets/home/hero/video.mp4" type="video/mp4"
+        src="/assets/home/hero/paragliding.mp4" type="video/mp4"
       />
       <div className="w-full py-20 bg-gradient-to-t from-cyan-950/80 to-transparent">
         <div className="w-full max-w-5xl  mx-auto text-center">
