@@ -17,7 +17,7 @@ const ContactForm = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const [message, setMessage] = useState({
     success: null,

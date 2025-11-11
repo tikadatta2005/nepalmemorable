@@ -4,6 +4,7 @@ import TestimonialCard from "../testimonials/TestimonialCard";
 import Link from "next/link";
 import { NextCyan, PrevCyan } from "../reusables/buttons/CarouselButtons";
 import { GetData } from "@/utils/GetData";
+import { ChevronRight } from "lucide-react";
 
 const Testimonials = async () => {
   const res = await GetData(
@@ -66,8 +67,9 @@ const Testimonials = async () => {
         <br />
         <center>
           <Link href="/testimonials" className="w-fit h-fit mx-auto">
-            <button className="w-fit md:text-base text-sm font-medium text-white p-2 px-4 rounded-lg bg-amber-400 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
+            <button className="w-fit md:text-base flex gap-2 items-center text-sm font-medium text-white p-2 px-4 rounded-lg bg-amber-500 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
               Read all experiences
+              <ChevronRight />
             </button>
           </Link>
         </center>

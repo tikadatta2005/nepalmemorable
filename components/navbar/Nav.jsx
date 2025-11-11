@@ -4,21 +4,14 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { MdClose, MdMenu } from "react-icons/md";
+import CsrImage from "../reusables/assets/CsrImage";
+import Image from "next/image";
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [showActivities, setShowActivities] = useState(false);
   const [showAbouts, setShowAbouts] = useState(false);
-
-  useEffect(() => {
-    setIsScrolled(window.scrollY > 0);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -74,32 +67,38 @@ const Nav = () => {
   return (
     <>
       <header
-        className={`w-full p-2 px-4 text-base fixed top-0 z-50 left-0 right-0 ${
-          isScrolled
-            ? "bg-white/90 backdrop-blur-sm text-slate-700 shadow-lg"
-            : "bg-gradient-to-b from-cyan-950/80 to-transparent text-white"
-        }`}
+        className={`w-full p-2 px-4 text-base fixed top-0 z-50 left-0 right-0 ${"bg-white/100 backdrop-blur-sm text-slate-700 shadow-lg"}`}
       >
-        <div className="w-full max-w-5xl mx-auto flex justify-between items-center">
+        <div className="w-full max-w-5xl mx-auto flex text-sm justify-between items-center">
           {/* logo */}
-          <Link href="/" className="w-fit flex items-center text-xl gap-2">
+          <Link
+            href="/"
+            className="w-fit flex items-center text-base md:text-lg gap-2"
+          >
+            <Image
+              src="/assets/logoIcon.png"
+              width={40}
+              height={40}
+              className={`w-fit h-8 md:h-10`}
+              alt={"Nepal Memorable"}
+            />
             <span
               className={`font-bold ${
-                isScrolled ? "text-cyan-700" : "text-cyan-500"
+                "text-cyan-500"
               }`}
             >
               NEPAL
             </span>
             <span
               className={`${
-                isScrolled ? "text-slate-700" : "text-cyan-200"
+                "text-slate-700"
               } font-medium`}
             >
               MEMORABLE
             </span>
             <span
               className={`${
-                isScrolled ? "text-slate-700" : "text-white"
+                "text-slate-700"
               } font-medium`}
             >
               TOURS
@@ -111,7 +110,7 @@ const Nav = () => {
             <div className="relative group">
               <button
                 className={`w-fit px-2 transition-all duration-300 ${
-                  isScrolled ? "hover:text-cyan-600" : "hover:text-cyan-200"
+                  "hover:text-cyan-600"
                 } hover:scale-105 flex gap-2 items-center`}
               >
                 About Us
@@ -138,7 +137,7 @@ const Nav = () => {
               <Link
                 href="/services"
                 className={`w-fit px-2 transition-all duration-300 ${
-                  isScrolled ? "hover:text-cyan-600" : "hover:text-cyan-200"
+                   "hover:text-cyan-600"
                 } hover:scale-105 flex gap-2 items-center`}
               >
                 Services
@@ -166,14 +165,14 @@ const Nav = () => {
                 href={elem?.link}
                 key={index}
                 className={`w-fit px-2 transition-all duration-300  ${
-                  isScrolled ? "hover:text-cyan-600" : "hover:text-cyan-200"
+                 "hover:text-cyan-600" 
                 }  hover:scale-105`}
               >
                 {elem?.name}
               </Link>
             ))}
             <Link href="/book-now" className="ml-8">
-              <button className="p-2 px-4 bg-cyan-800 text-white rounded-md transition-all duration-300 hover:scale-105 hover:text-cyan-100 cursor-pointer shadow">
+              <button className="p-2 px-4 bg-amber-500 text-white rounded-md transition-all duration-300 hover:scale-105 hover:text-amber-100 cursor-pointer shadow">
                 Book Now
               </button>
             </Link>

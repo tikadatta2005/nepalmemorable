@@ -119,7 +119,7 @@ const Form = () => {
 
     For total people : ${formdata?.totalPeople}
   
-    Name: ${formdata?.name},
+    Name: ${formdata?.fullname},
     Country: ${formdata?.country?.country}
     Phone: ${formdata?.country?.dial} ${formdata?.phone}
     Email: ${formdata?.email}

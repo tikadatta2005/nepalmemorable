@@ -5,6 +5,7 @@ import TripCard from "../trips/TripCard";
 import Link from "next/link";
 import { NextWhite, PrevWhite } from "../reusables/buttons/CarouselButtons";
 import { GetData } from "@/utils/GetData";
+import { ChevronRight } from "lucide-react";
 
 const Trips = async () => {
   const res = await GetData("/get-contents?type=tours&page=0&sort=-1&len=6");
@@ -44,15 +45,8 @@ const Trips = async () => {
   };
 
   return (
-    <section className="w-full relative pt-16 mt-0 md:p-0 md:-mt-54">
-      <Image
-        src="/assets/reusables/wave1.webp"
-        alt="wave design"
-        width={1200}
-        height={200}
-        className="w-full h-auto"
-      />
-      <div className="w-full bg-cyan-700 pb-20 p-4 -mt-1">
+    <section className="w-full relative">
+      <div className="w-full bg-linear-to-b from-cyan-700 to-cyan-600 pb-20 pt-20 p-4">
         <div className="w-full max-w-7xl mx-auto p-4">
           <div className="w-full flex justify-between">
             <div className="flex w-fit flex-col gap-2">
@@ -65,8 +59,9 @@ const Trips = async () => {
             </div>
             <div className="w-fit flex flex-col justify-end py-4">
               <Link href="/services/tours" className="w-fit h-fit">
-                <button className="w-fit md:text-base text-sm font-medium text-white p-2 px-4 rounded-lg bg-amber-400 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
+                <button className="w-fit md:text-base flex gap-2 items-center text-sm font-medium text-white p-2 px-4 rounded-lg bg-amber-500 transition-all duration-300 hover:shadow-xl hover:scale-105 cursor-pointer">
                   See all
+                  <ChevronRight />
                 </button>
               </Link>
             </div>
@@ -78,7 +73,6 @@ const Trips = async () => {
             NextButton={NextWhite}
           >
             {[...data, ...data, ...data]?.map((element, index) => {
-
               return (
                 <div key={index} className="w-full p-1">
                   <TripCard data={element} />

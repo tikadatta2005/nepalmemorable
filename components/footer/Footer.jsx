@@ -174,7 +174,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="/assets/logo.png"
+                src="/assets/logoIcon.png"
                 alt="Nepal Memorable"
                 className="h-12 w-auto"
               />

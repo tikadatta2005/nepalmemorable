@@ -8,10 +8,10 @@ const WhyUs = async ({ cover }) => {
   const data = res?.data;
 
   return (
-    <section className="w-full min-h-screen bg-slate-50">
+    <section className="w-full bg-slate-50">
       <div className="grid grid-cols-1 md:grid-cols-2 h-full">
         {/* Left: Text */}
-        <div className="flex flex-col pt-20 p-4 pb-20 md:pb-52 justify-center gap-4  px-6 md:px-12 lg:px-16">
+        <div className="flex flex-col pt-20 p-4 pb-20 justify-center gap-4  px-6 md:px-12 lg:px-16">
           <h2 className="text-slate-800 font-pacifico text-2xl md:text-3xl lg:text-4xl leading-tight mb-6">
             Why Us? Because Your Journey Matters
           </h2>
@@ -38,7 +38,7 @@ const WhyUs = async ({ cover }) => {
         </div>
 
         {/* Right: Full Image */}
-        <div className="relative w-full h-80 md:h-full px-4 md:px-0">
+        <div className="relative w-full h-80 md:h-full">
           <div className="relative w-full h-full rounded-xl shadow-xl md:rounded-none md:shadow-none overflow-hidden">
             <CsrImage
               src={
