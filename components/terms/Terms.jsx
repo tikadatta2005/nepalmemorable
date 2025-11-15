@@ -10,7 +10,7 @@ const Terms = () => {
       <Banner1
         title="Terms & Services"
         description="Please review the following terms that govern your use of our website and travel services. By booking with us, you agree to these policies designed to ensure a safe and seamless experience."
-        cover="/assets/terms/bg.webp"
+        cover={["/assets/terms/bg.webp"]}
       />
       <br />
       {data?.map((elem, index) => {
