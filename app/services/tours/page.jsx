@@ -10,7 +10,7 @@ const meta = {
   description:
     "Experience Nepal’s rich culture, breathtaking landscapes, and spiritual heritage through our thoughtfully curated tours.",
   content: `<p>From the timeless temples of Kathmandu to the peaceful hills of Nagarkot and the lush jungles of Chitwan, every corner of Nepal has a story to tell. Our tours are designed for travelers who wish to experience culture, nature, and adventure in perfect balance.</p><br/><p>Whether it’s watching the sunrise over the Himalayas, exploring ancient cities, or walking through serene monasteries, each journey brings you closer to the heart of Nepal. With expert local guides and comfortable travel plans, we make exploration effortless and memorable.</p>`,
-  cover: "/assets/services/tours.jpg",
+  cover: ["/assets/services/tours/1.webp","/assets/services/tours/2.webp"],
 };
 
 export const metadata = () => {
@@ -24,7 +24,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`, // full URL for OG
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`, // full URL for OG
           width: 1200,
           height: 630,
           alt: meta.title,

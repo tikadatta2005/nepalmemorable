@@ -11,7 +11,7 @@ const Testimonials = async () => {
   const data = res?.data;
 
   return (
-    <CsrBg className="relative w-full min-h-screen bg-cover bg-fixed" style={{backgroundImage:"url(/assets/testimonials/bg.jpg)"}}>
+    <CsrBg className="relative w-full min-h-screen bg-cover bg-fixed" style={{backgroundImage:"url(/assets/testimonials/bg.webp)"}}>
       {/* Optimized Background */}
       <section className="relative w-full min-h-screen p-8 pt-28 bg-slate-950/70">
         <TestimonialHolder>

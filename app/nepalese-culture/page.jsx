@@ -8,7 +8,7 @@ const meta = {
   description:
     "Discover the timeless traditions, colorful festivals, and diverse cultural heritage that make Nepal a land of unity in diversity. From spiritual rituals to joyful celebrations, explore what keeps Nepal’s heart beating through its culture.",
   content: "",
-  cover: "/assets/culture/bg.jpg",
+  cover: ["/assets/culture/bg.webp"],
 };
 
 export const metadata = () => {
@@ -22,7 +22,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,

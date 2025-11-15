@@ -9,7 +9,7 @@ const meta = {
   description:
     "From mountain adventures to cultural escapes — discover the best of Nepal with curated journeys for every traveler.",
   content: "",
-  cover: "/assets/packages/bg.jpg",
+  cover: "/assets/packages/bg.webp",
 };
 
 export const metadata = () => {

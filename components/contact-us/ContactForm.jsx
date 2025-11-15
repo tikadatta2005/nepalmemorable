@@ -117,7 +117,7 @@ const ContactForm = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-xl p-6 bg-white/50 backdrop-blur-sm shadow-md shadow-cyan-800/20 rounded-xl space-y-4 mx-auto"
+        className="w-full max-w-xl p-6 bg-white/80 backdrop-blur-sm shadow-md shadow-cyan-800/20 rounded-xl space-y-4 mx-auto"
       >
         <h1 className="text-3xl font-semibold text-cyan-700 text-center mb-4">
           Contact Now

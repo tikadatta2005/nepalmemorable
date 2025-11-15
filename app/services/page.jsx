@@ -16,37 +16,37 @@ const Services = async () => {
     {
       _id: "652d4c69b72a5f6d9b3c2f92",
       title: "Tours",
-      cover: "/assets/services/tours.jpg",
+      cover: "/assets/services/tours/1.webp",
       link: "/services/tours",
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f91",
       title: "Trekking",
-      cover: "/assets/services/trekking.jpg",
+      cover: "/assets/services/trekking/1.webp",
       link: "/services/trekking",
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f93",
       title: "Adventures",
-      cover: "/assets/services/adventure.jpg",
+      cover: "/assets/services/adventure/1.webp",
       link: "/services/adventures",
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f94",
       title: "National Park",
-      cover: "/assets/services/np.jpg",
+      cover: "/assets/services/np/1.webp",
       link: "/services/national-park",
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f95",
       title: "Hiking",
-      cover: "/assets/services/hiking.jpg",
+      cover: "/assets/services/hiking/1.webp",
       link: "/services/hiking",
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f96",
       title: "Community & Stay",
-      cover: "/assets/services/home.jpg",
+      cover: "/assets/services/home/1.webp",
       link: "/services/community-and-stay",
     },
   ];
@@ -56,7 +56,7 @@ const Services = async () => {
   return (
     <main className="w-full bg-slate-50 min-h-screen">
       <Banner3
-        cover={"/assets/services/bg.jpg"}
+        cover={"/assets/services/bg.webp"}
         title="Explore Nepal – Treks & Tours of a Lifetime"
         description="Discover the beauty of Nepal with Nepal Memorable. From breathtaking Himalayan treks to cultural tours, we craft unforgettable adventures that let you experience nature, tradition, and adventure all in one journey."
       />

@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <CsrBg
       className="relative w-full min-h-screen bg-cover bg-fixed"
-      style={{ backgroundImage: "url(/assets/bookings/bg.jpg)" }}
+      style={{ backgroundImage: "url(/assets/bookings/bg.webp)" }}
     >
       {/* Optimized Background Image */}
 

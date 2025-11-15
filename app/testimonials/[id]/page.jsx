@@ -37,7 +37,7 @@ const page = async ({ params }) => {
   return (
     <CsrBg
       className="relative w-full min-h-screen bg-cover bg-fixed bg-center"
-      style={{ backgroundImage: "url(/assets/testimonials/bg.jpg)" }}
+      style={{ backgroundImage: "url(/assets/testimonials/bg.webp)" }}
     >
       <section className="relative w-full min-h-screen pt-32 sm:pt-36 p-4 sm:p-8 bg-slate-950/80">
         <div className="w-full max-w-6xl mx-auto bg-cyan-800 rounded-xl shadow-xl overflow-hidden pt-8 md:pt-12">

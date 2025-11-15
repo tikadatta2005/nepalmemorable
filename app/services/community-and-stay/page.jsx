@@ -10,7 +10,7 @@ const meta = {
   description:
     "Experience Nepal like a local — stay with families, share meals, join village life, and support sustainable tourism that uplifts communities.",
   content: `<p>Community-based and homestay tourism in Nepal offers travelers the chance to live with local families, enjoy authentic food, and experience rich traditions firsthand. Unlike hotels, these stays are run by the communities themselves, ensuring that tourism directly supports local livelihoods, women’s empowerment, and cultural preservation.</p><br/><p>Guests enjoy warm hospitality, cultural performances, cooking and farming activities, and meaningful interactions with diverse ethnic groups — including Gurung, Tamang, Tharu, Magar, Rai, Limbu, Sherpa, and Newar. It’s a beautiful way to travel consciously while discovering Nepal’s rural heart.</p>`,
-  cover: "/assets/services/home.jpg",
+  cover: ["/assets/services/home_stay/1.webp"],
 };
 
 export const metadata = () => {
@@ -24,7 +24,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,

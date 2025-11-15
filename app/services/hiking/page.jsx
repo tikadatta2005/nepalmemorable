@@ -9,7 +9,7 @@ const meta = {
   description:
     "Nepal — the land of trails. From peaceful hill walks to scenic ridge hikes, discover routes that bring you closer to mountains, culture, and nature.",
   content: `<p>Hiking around the Kathmandu Valley can be the best option for the tourists visiting Nepal for a short period of time. In case, if they don’t have much time or energy to trek further afield, they can still experience hiking for one or more days around Kathmandu’s hills and small settlements. The sub-alpine forests and quiet countryside make for a great short break from the hustle and bustle of city life. Most of the hikes can be carried out in a single day. They are suitable for children and older people as well.</p>`,
-  cover: "/assets/services/hiking.jpg",
+  cover: ["/assets/services/hiking/1.webp","/assets/services/hiking/2.webp"],
 };
 
 export const metadata = () => {
@@ -23,7 +23,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,

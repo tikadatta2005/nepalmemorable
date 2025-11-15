@@ -45,11 +45,11 @@ const CurrencyConverter = () => {
   return (
     <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
       <div className="flex items-center gap-2 text-cyan-100">
-        <FaGlobe className="text-xl" />
-        <span className="text-sm font-medium">Currency Converter</span>
       </div>
 
       <div className="flex items-center gap-2 text-sm text-white bg-cyan-900/60 p-2 rounded-lg">
+    
+        <FaGlobe className="text-xl" />
         <input
           type="number"
           value={amount}
@@ -136,7 +136,7 @@ const Footer = () => {
     (async () => {
       const res = await GetData("/web-details");
       setData(res?.data);
-      console.log(res?.data)
+      console.log(res?.data);
     })();
   }, []);
 
@@ -255,32 +255,33 @@ const Footer = () => {
                 Follow Us
               </span>
               <div className="flex items-center gap-4">
-                {data?.socialmediaLinks && data?.socialmediaLinks?.map((social, index) => {
-                  const Icon = social.icon;
-                  return (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-cyan-100 hover:text-white text-xl transition-all hover:scale-110"
-                    >
-                      <Icon />
-                    </a>
-                  );
-                })}
+                {data?.socialmediaLinks &&
+                  data?.socialmediaLinks?.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-cyan-100 hover:text-white text-xl transition-all hover:scale-110"
+                      >
+                        <Icon />
+                      </a>
+                    );
+                  })}
               </div>
             </div>
 
             {/* Nepal Tourism Board Link */}
             <a
-              href="https://visitnepal.com/"
+              href="https://ntb.gov.np/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-all hover:scale-105 group"
             >
               <span className="text-sm font-medium text-white">
-                Visit Nepal Tourism Board
+                Nepal Tourism Board
               </span>
               <FaExternalLinkAlt className="text-cyan-200 group-hover:text-white text-sm" />
             </a>
@@ -290,7 +291,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-cyan-800/50 text-center">
           <p className="text-sm text-cyan-200">
-            © {new Date().getFullYear()} Nepal Memorable. All rights reserved.
+            © {new Date().getFullYear()} Nepal Memorable Tours. All rights reserved.
           </p>
         </div>
       </div>

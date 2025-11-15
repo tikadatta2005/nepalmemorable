@@ -10,6 +10,7 @@ const Banner3 = ({ cover, title, description }) => {
           alt={title}
           fill
           className="w-full h-full object-cover"
+          priority
         />
       </div>
       <div className="w-3/4 md:w-1/2 p-8 flex flex-col justify-center gap-4 py-40 bg-cyan-900">

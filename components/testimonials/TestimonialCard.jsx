@@ -6,7 +6,6 @@ import CsrImage from "../reusables/assets/CsrImage";
 
 const TestimonialCard = ({ data }) => {
 
-  console.log(data)
   return (
     <div className="w-full p-4 py-8 max-w-md bg-white shadow-md flex flex-col gap-4 rounded-lg">
       <div className="w-full flex gap-2 items-center ">

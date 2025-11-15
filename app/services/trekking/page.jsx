@@ -9,7 +9,7 @@ const meta = {
   description:
     "Walk through ancient trails, high mountain passes, and vibrant villages — Nepal’s treks are journeys of both nature and spirit.",
   content: `<p>Trekking in Nepal is a once-in-a-lifetime experience, combining breathtaking mountain views, rich cultural encounters, and serene natural beauty. From the iconic Everest Base Camp to the tranquil Rara Lake, each route tells a different story.</p><br/><p>Whether you seek high-altitude adventure or peaceful cultural immersion, our treks are guided by experts who ensure safety, comfort, and authenticity. Discover why Nepal is known as the trekker’s paradise.</p>`,
-  cover: "/assets/services/trekking.jpg",
+  cover: ["/assets/services/trekking/1.webp","/assets/services/trekking/2.webp"],
 };
 
 export const metadata = () => {
@@ -23,7 +23,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,

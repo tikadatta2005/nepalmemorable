@@ -1,6 +1,7 @@
 import AboutUsCard from "@/components/About-Us/AboutUsCard";
 import Banner1 from "@/components/reusables/banners/Banner1";
 import Banner2 from "@/components/reusables/banners/Banner2";
+import SimpleBanner from "@/components/reusables/banners/SimpleBanner";
 import { GetData } from "@/utils/GetData";
 import React from "react";
 
@@ -23,7 +24,7 @@ const AboutUs = async () => {
 
           if (index === 0) {
             return (
-              <Banner1
+              <SimpleBanner
                 title={elem?.title}
                 description={elem?.description}
                 cover={`${process.env.NEXT_PUBLIC_SERVER}/${cover}`}

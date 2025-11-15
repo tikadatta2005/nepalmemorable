@@ -9,7 +9,7 @@ const meta = {
   description:
     "From mountains to rivers, Nepal is your playground for adventure.",
   content: `<p>Nepal offers a playground for every adventure seeker. Ride through winding biking trails in Kathmandu and Pokhara, soar high above the valleys with paragliding, and feel the adrenaline rush while rafting down roaring Himalayan rivers. For those seeking a unique thrill, ziplining across lush valleys is an experience you won't forget.</p><br/><p>Our adventures are designed for all skill levels, from beginners to experienced thrill-seekers. With professional guides and safety-first equipment, each activity promises excitement without compromise.</p>`,
-  cover: "/assets/services/adventure.jpg",
+  cover: ["/assets/services/adventure/1.webp"],
 };
 
 export const metadata = () => {
@@ -23,7 +23,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,

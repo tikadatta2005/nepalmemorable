@@ -10,7 +10,7 @@ const meta = {
   description:
     "Discover Nepal’s breathtaking biodiversity and majestic wildlife through guided trips into its world-famous national parks.",
   content: `<p>Nepal’s national parks offer a blend of nature, culture, and adventure. From the subtropical jungles of Chitwan to the snow-covered peaks of Sagarmatha, each park holds a unique experience for travelers and wildlife lovers alike.</p><br/><p>Our trips are designed to connect you with nature—whether you’re spotting rhinos in the wild, trekking through alpine forests, or listening to the calls of exotic birds at dawn. With our experienced local guides, you’ll explore the untouched beauty of Nepal’s protected areas safely and sustainably.</p>`,
-  cover: "/assets/services/np.jpg",
+  cover: ["/assets/services/np/1.webp"],
 };
 
 export const metadata = () => {
@@ -24,7 +24,7 @@ export const metadata = () => {
       siteName: "Nepal Memorable Tours",
       images: [
         {
-          url: `https://www.nepalmemorable.com${meta.cover}`,
+          url: `https://www.nepalmemorable.com${meta.cover[0]}`,
           width: 1200,
           height: 630,
           alt: meta.title,
@@ -37,7 +37,9 @@ export const metadata = () => {
 };
 
 const NationalParkTrip = async () => {
-  const res = await GetData("/get-contents?type=national-park&sort=-1&page=0&len=20");
+  const res = await GetData(
+    "/get-contents?type=national-park&sort=-1&page=0&len=20"
+  );
   const data = res?.data;
 
   return (
@@ -71,7 +73,10 @@ const NationalParkTrip = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={"National Parks"} location={`https://www.nepalmemorable.com/services/national-park`}/>
+            <FastBookNow
+              title={"National Parks"}
+              location={`https://www.nepalmemorable.com/services/national-park`}
+            />
           </div>
         </div>
       </div>
