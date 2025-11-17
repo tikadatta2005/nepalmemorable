@@ -45,8 +45,8 @@ const Services = async () => {
     },
     {
       _id: "652d4c69b72a5f6d9b3c2f96",
-      title: "Community & Stay",
-      cover: "/assets/services/home/1.webp",
+      title: "Home Stay",
+      cover: "/assets/services/home_stay/1.webp",
       link: "/services/community-and-stay",
     },
   ];
