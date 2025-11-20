@@ -180,7 +180,7 @@ const Footer = () => {
               />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">
-              NEPAL MEMORABLE TOURS {"[P].LTD"}
+              NEPAL MEMORABLE TOURS {"(P). LTD"}
             </h3>
             <p className="text-sm text-cyan-50 leading-relaxed mb-4">
               {data?.description}
