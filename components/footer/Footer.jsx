@@ -2,10 +2,6 @@
 import { GetData } from "@/utils/GetData";
 import React, { useState, useEffect } from "react";
 import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
   FaMailBulk,
   FaPhone,
   FaExternalLinkAlt,

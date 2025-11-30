@@ -38,7 +38,7 @@ export const metadata = () => {
 
 const Trekking = async () => {
   const res = await GetData(
-    "/get-contents?type=trekking&sort=-1&page=0&len=20"
+    "/get-contents?type=trekking-regions&sort=1&page=0&len=20"
   );
   const data = res?.data;
 
@@ -63,7 +63,7 @@ const Trekking = async () => {
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">
         {/* Cards */}
         <div className="w-full md:w-3/4 space-y-6">
-          <TrekkHolder>
+          <TrekkHolder type="trekking-regions" slug="" sort={"1"}>
             {data?.map((elem, index) => (
               <CardBook data={elem} key={index} service="trekking" />
             ))}

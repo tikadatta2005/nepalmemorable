@@ -16,6 +16,7 @@ export const GetData = async (url) => {
     }
     return response;
   } catch (error) {
+    console.log(url)
     console.log(error);
     return { error: error?.message, data: null };
   }

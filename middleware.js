@@ -9,13 +9,13 @@ export function middleware(req) {
     // Home page: 1 hour
     res.headers.set(
       "Cache-Control",
-      "public, max-age=3600, s-maxage=3600, stale-while-revalidate=60"
+      "public, max-age=0, s-maxage=0, stale-while-revalidate=0"
     );
   } else {
     // All other paths: 5 minutes
     res.headers.set(
       "Cache-Control",
-      "public, max-age=300, s-maxage=300, stale-while-revalidate=60"
+      "public, max-age=0, s-maxage=0, stale-while-revalidate=0"
     );
   }
 

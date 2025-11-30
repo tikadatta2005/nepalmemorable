@@ -6,7 +6,8 @@ import React from "react";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const res = await GetData(`/get-content/${id}?type=trekking`);
+  const _id = id.split("-").pop()
+  const res = await GetData(`/get-content/${_id}?type=trekking`);
   const data = res?.data;
   const coverImage = `${process.env.NEXT_SERVER}/${data?.cover}`;
   return {
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }) {
 
 const page = async ({ params }) => {
   const { id } = await params;
-  const res = await GetData(`/get-content/${id}?type=trekking`);
+  const _id = id.split("-").pop()
+  const res = await GetData(`/get-content/${_id}?type=trekking`);
   const data = await res?.data;
 
   if(!data) return <NotFoundPage/>
