@@ -7,8 +7,7 @@ import React from "react";
 const meta = {
   title: "Adventures in Nepal",
   description:
-    "From mountains to rivers, Nepal is your playground for adventure.",
-  content: `<p>Nepal offers a playground for every adventure seeker. Ride through winding biking trails in Kathmandu and Pokhara, soar high above the valleys with paragliding, and feel the adrenaline rush while rafting down roaring Himalayan rivers. For those seeking a unique thrill, ziplining across lush valleys is an experience you won't forget.</p><br/><p>Our adventures are designed for all skill levels, from beginners to experienced thrill-seekers. With professional guides and safety-first equipment, each activity promises excitement without compromise.</p>`,
+    "Dive into Nepal’s ultimate thrill zone bungy over deep gorges, raft roaring rivers, paraglide above majestic landscapes, trek iconic trails, zipline at incredible speeds, and rise above it all in a serene hot-air balloon adventure.",
   cover: ["/assets/services/adventure/1.webp"],
 };
 
@@ -51,12 +50,12 @@ const Adventures = async () => {
       />
 
       {/* Introduction */}
-      <div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
+      {meta?.content&&<div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
         <div
           dangerouslySetInnerHTML={{ __html: meta?.content }}
           className="prose prose-cyan max-w-full"
         ></div>
-      </div>
+      </div>}
 
       {/* Main Content: Cards + Form */}
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">
@@ -72,14 +71,16 @@ const Adventures = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={"Adventures"} location={`https://www.nepalmemorable.com/services/adventures`}/>
+            <FastBookNow
+              title={"Adventures"}
+              location={`https://www.nepalmemorable.com/services/adventures`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
-
 
 export const revalidate = 300;
 

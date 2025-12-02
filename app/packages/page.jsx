@@ -7,8 +7,7 @@ import PkgHolder from "@/components/packages/PkgHolder";
 const meta = {
   title: "Nepal Tour & Trek Packages",
   description:
-    "From mountain adventures to cultural escapes — discover the best of Nepal with curated journeys for every traveler.",
-  content: "",
+"Experience Nepal with ease through our expertly curated tour and trek packages—combining comfort, adventure, and authentic local experiences for a truly memorable journey." , content: "",
   cover: "/assets/packages/bg.webp",
 };
 

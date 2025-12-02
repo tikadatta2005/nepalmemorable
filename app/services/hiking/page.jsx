@@ -7,9 +7,8 @@ import React from "react";
 const meta = {
   title: "Hiking in Nepal",
   description:
-    "Nepal — the land of trails. From peaceful hill walks to scenic ridge hikes, discover routes that bring you closer to mountains, culture, and nature.",
-  content: `<p>Hiking around the Kathmandu Valley can be the best option for the tourists visiting Nepal for a short period of time. In case, if they don’t have much time or energy to trek further afield, they can still experience hiking for one or more days around Kathmandu’s hills and small settlements. The sub-alpine forests and quiet countryside make for a great short break from the hustle and bustle of city life. Most of the hikes can be carried out in a single day. They are suitable for children and older people as well.</p>`,
-  cover: ["/assets/services/hiking/1.webp","/assets/services/hiking/2.webp"],
+    "Hike through Nepal’s peaceful hills, where every trail passes through charming villages and rolling landscapes. Meet warm local people, enjoy glimpses of traditional life, and find quiet spots for reflection and meditation. Even a single day on these trails offers fresh air, stunning scenery, and a journey that nourishes both body and soul.",
+  cover: ["/assets/services/hiking/1.webp", "/assets/services/hiking/2.webp"],
 };
 
 export const metadata = () => {
@@ -48,12 +47,12 @@ const Hiking = async () => {
       />
 
       {/* Intro */}
-      <div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
+      {meta?.content&&<div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
         <div
           dangerouslySetInnerHTML={{ __html: meta?.content }}
           className="prose prose-cyan max-w-full"
         ></div>
-      </div>
+      </div>}
 
       {/* Main Content: Cards + Booking */}
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">
@@ -69,7 +68,10 @@ const Hiking = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={"Hiking"} location={`https://www.nepalmemorable.com/services/hiking`}/>
+            <FastBookNow
+              title={"Hiking"}
+              location={`https://www.nepalmemorable.com/services/hiking`}
+            />
           </div>
         </div>
       </div>

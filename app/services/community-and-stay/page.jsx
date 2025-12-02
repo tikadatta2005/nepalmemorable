@@ -8,8 +8,7 @@ import FastBookNow from "@/components/forms/FastBookNow";
 const meta = {
   title: "Community & Homestay in Nepal",
   description:
-    "Experience Nepal like a local — stay with families, share meals, join village life, and support sustainable tourism that uplifts communities.",
-  content: `<p>Community-based and homestay tourism in Nepal offers travelers the chance to live with local families, enjoy authentic food, and experience rich traditions firsthand. Unlike hotels, these stays are run by the communities themselves, ensuring that tourism directly supports local livelihoods, women’s empowerment, and cultural preservation.</p><br/><p>Guests enjoy warm hospitality, cultural performances, cooking and farming activities, and meaningful interactions with diverse ethnic groups — including Gurung, Tamang, Tharu, Magar, Rai, Limbu, Sherpa, and Newar. It’s a beautiful way to travel consciously while discovering Nepal’s rural heart.</p>`,
+    "Step into the heart of Nepal through its welcoming communities. Stay with local families in traditional homestays, share meals, learn ancient customs, and take part in daily village life. Wander through terraced hills, fragrant gardens, and bustling local markets, where every interaction offers a glimpse of Nepal’s vibrant culture. Beyond sightseeing, these experiences create lasting connections, soulful memories, and a deeper understanding of life in this extraordinary land.",
   cover: ["/assets/services/home_stay/1.webp"],
 };
 
@@ -36,7 +35,6 @@ export const metadata = () => {
   };
 };
 
-
 const CommunityHomestay = async () => {
   const res = await GetData(
     "/get-contents?type=home-stay&sort=-1&page=0&len=20"
@@ -53,12 +51,12 @@ const CommunityHomestay = async () => {
       />
 
       {/* Intro */}
-      <div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
+      {meta?.content&&<div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
         <div
           dangerouslySetInnerHTML={{ __html: meta?.content }}
           className="prose prose-cyan max-w-full"
         ></div>
-      </div>
+      </div>}
 
       {/* Main Content: Cards + Booking */}
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">
@@ -74,14 +72,16 @@ const CommunityHomestay = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={"Home Stay"} location={`https://www.nepalmemorable.com/services/community-and-stay`}/>
+            <FastBookNow
+              title={"Home Stay"}
+              location={`https://www.nepalmemorable.com/services/community-and-stay`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
-
 
 export const revalidate = 300;
 

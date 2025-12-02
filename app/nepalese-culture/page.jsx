@@ -4,10 +4,9 @@ import { GetData } from "@/utils/GetData";
 import React from "react";
 
 const meta = {
-  title: "Nepal’s Rich Culture & Vibrant Festivals",
+  title: "Experience the Colors of Nepal: Festivals & Traditions",
   description:
-    "Discover the timeless traditions, colorful festivals, and diverse cultural heritage that make Nepal a land of unity in diversity. From spiritual rituals to joyful celebrations, explore what keeps Nepal’s heart beating through its culture.",
-  content: "",
+"Experience the heart and soul of Nepal through its vibrant festivals and cultural celebrations. From colorful street carnivals to sacred temple rituals, every festival brings communities together in music, dance, and joyous traditions. Wander through lively markets, join in the festivities, and discover the stories, flavors, and rituals that make Nepal’s culture truly unforgettable. Each celebration is not just a spectacle, but a journey into the warmth, spirit, and heritage of this extraordinary land",  content: "",
   cover: ["/assets/culture/bg.webp"],
 };
 

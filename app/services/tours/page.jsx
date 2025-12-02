@@ -8,8 +8,7 @@ import FastBookNow from "@/components/forms/FastBookNow";
 const meta = {
   title: "Tours in Nepal",
   description:
-    "Experience Nepal’s rich culture, breathtaking landscapes, and spiritual heritage through our thoughtfully curated tours.",
-  content: `<p>From the timeless temples of Kathmandu to the peaceful hills of Nagarkot and the lush jungles of Chitwan, every corner of Nepal has a story to tell. Our tours are designed for travelers who wish to experience culture, nature, and adventure in perfect balance.</p><br/><p>Whether it’s watching the sunrise over the Himalayas, exploring ancient cities, or walking through serene monasteries, each journey brings you closer to the heart of Nepal. With expert local guides and comfortable travel plans, we make exploration effortless and memorable.</p>`,
+    "Experience the breathtaking beauty of Nepal, from towering Himalayan peaks to peaceful valleys, historic temples, and warm local traditions each tour designed to inspire, uplift, and connect you with the heart of this extraordinary land",
   cover: ["/assets/services/tours/1.webp","/assets/services/tours/2.webp"],
 };
 
@@ -50,12 +49,12 @@ const Tours = async () => {
       />
 
       {/* Introduction */}
-      <div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
+      {meta?.content&&<div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
         <div
           dangerouslySetInnerHTML={{ __html: meta?.content }}
           className="prose prose-cyan max-w-full"
         ></div>
-      </div>
+      </div>}
 
       {/* Main Content: Cards + Form */}
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">

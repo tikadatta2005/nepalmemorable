@@ -7,9 +7,11 @@ import FastBookNow from "@/components/forms/FastBookNow";
 const meta = {
   title: "Trekking in Nepal",
   description:
-    "Walk through ancient trails, high mountain passes, and vibrant villages — Nepal’s treks are journeys of both nature and spirit.",
-  content: `<p>Trekking in Nepal is a once-in-a-lifetime experience, combining breathtaking mountain views, rich cultural encounters, and serene natural beauty. From the iconic Everest Base Camp to the tranquil Rara Lake, each route tells a different story.</p><br/><p>Whether you seek high-altitude adventure or peaceful cultural immersion, our treks are guided by experts who ensure safety, comfort, and authenticity. Discover why Nepal is known as the trekker’s paradise.</p>`,
-  cover: ["/assets/services/trekking/1.webp","/assets/services/trekking/2.webp"],
+    "Challenge your spirit and embrace the exhilaration of Nepal’s high trails from Everest’s towering peaks to Annapurna’s rugged paths. Trek through untamed wilderness, cross suspension bridges, and walk among the clouds through lush valleys and snowy peaks. Along the way, serene rivers, cascading waterfalls, and breathtaking panoramas invite moments of meditation, reflection, and a true spiritual journey—trekking in Nepal nourishes both the body and the soul.",
+  cover: [
+    "/assets/services/trekking/1.webp",
+    "/assets/services/trekking/2.webp",
+  ],
 };
 
 export const metadata = () => {
@@ -35,7 +37,6 @@ export const metadata = () => {
   };
 };
 
-
 const Trekking = async () => {
   const res = await GetData(
     "/get-contents?type=trekking-regions&sort=1&page=0&len=20"
@@ -52,12 +53,12 @@ const Trekking = async () => {
       />
 
       {/* Introduction */}
-      <div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
+      {meta?.content&&<div className="w-full max-w-7xl mx-auto p-6 md:p-12 text-gray-700 text-base md:text-lg leading-relaxed">
         <div
           dangerouslySetInnerHTML={{ __html: meta?.content }}
           className="prose prose-cyan max-w-full"
         ></div>
-      </div>
+      </div>}
 
       {/* Main Content: Cards + Form */}
       <div className="w-full max-w-7xl mx-auto p-6 md:p-12 flex flex-col md:flex-row gap-8">
@@ -73,14 +74,16 @@ const Trekking = async () => {
         {/* Sticky Booking Form */}
         <div className="hidden md:block w-full md:w-1/4">
           <div className="sticky top-24">
-            <FastBookNow title={"Trekking"} location={`https://www.nepalmemorable.com/services/trekking`}/>
+            <FastBookNow
+              title={"Trekking"}
+              location={`https://www.nepalmemorable.com/services/trekking`}
+            />
           </div>
         </div>
       </div>
     </main>
   );
 };
-
 
 export const revalidate = 300;
 
