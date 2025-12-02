@@ -4,11 +4,59 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { MdClose, MdMenu } from "react-icons/md";
-import CsrImage from "../reusables/assets/CsrImage";
 import Image from "next/image";
+import { GetData } from "@/utils/GetData";
+import { ChevronRight } from "lucide-react";
+
+const SubLinkCoponents = ({ baseLink, sublinks }) => {
+  if (baseLink.includes("trek")) {
+    console.log(sublinks);
+  }
+  return (
+    <div className="w-full max-w-64 p-0 top-4.5 h-fit min-h-full absolute hidden group-hover/act:block -right-64">
+      <div className="w-full bg-white h-fit flex flex-col gap-0 shadow-lg">
+        {Array.isArray(sublinks) &&
+          sublinks?.map((elem, index) => {
+            const slugBase = elem?.folder_id
+              ? elem.folder_id
+              : elem?.title || elem?.name
+              ? (elem.title || elem.name)
+                  .toString()
+                  .trim()
+                  .replace(/[^\w\s-]/g, "") // remove special chars
+                  .replace(/\s+/g, "-") // replace spaces with -
+                  .toLowerCase()
+              : "";
+
+            const slug = slugBase ? `${slugBase}-${elem?._id}` : `${elem?._id}`;
+
+            return (
+              <Link href={`${baseLink}/${slug}`} key={index} className="w-full">
+                <button
+                  className={`w-full p-2 text-sm px-4 text-left text-slate-800 ${
+                    index % 2 === 0 ? "bg-slate-100" : "bg-white"
+                  } transition-all duration-300 hover:text-cyan-700 overflow-hidden  truncate whitespace-nowrap`}
+                >
+                  {elem?.title || elem?.name}
+                </button>
+              </Link>
+            );
+          })}
+        <Link href={`${baseLink}`} className="w-full">
+          <button
+            className={`w-full p-2 text-sm px-4 text-left text-slate-800 ${
+              sublinks?.length % 2 === 0 ? "bg-slate-100" : "bg-white"
+            } transition-all duration-300 hover:text-cyan-700 overflow-hidden  truncate whitespace-nowrap`}
+          >
+            See all items ...
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+};
 
 const Nav = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [showActivities, setShowActivities] = useState(false);
   const [showAbouts, setShowAbouts] = useState(false);
@@ -46,14 +94,63 @@ const Nav = () => {
     { link: "/contact-us", name: "Contact Us" },
   ];
 
+  const [subLinks, setSublinks] = useState([
+    {
+      tours: [],
+      trekking: [],
+      adventures: [],
+      hiking: [],
+      home_stay: [],
+    },
+  ]);
+  useEffect(() => {
+    const types = {
+      tours: "tours",
+      trekking: "trekking-regions",
+      np: "national-park",
+      adventures: "adventures",
+      hiking: "hiking",
+      home_stay: "home-stay",
+    };
+
+    const FetchSubs = async (key) => {
+      const res = await GetData(
+        `/get-contents?type=${types?.[key]}&page=0&len=10&sort=1`
+      );
+      if (res?.error || !Array.isArray(res?.data)) return;
+      else return setSublinks((prev) => ({ ...prev, [key]: res?.data }));
+    };
+
+    for (const key in types) {
+      FetchSubs(key);
+    }
+  }, []);
+
   const activities = [
-    { link: "/services/tours", name: "Tours" },
-    { link: "/services/trekking", name: "Trekking" },
-    { link: "/services/adventures", name: "Adventures" },
-    { link: "/services/national-park", name: "National Park" },
-    { link: "/services/hiking", name: "Hiking" },
-    { link: "/services/community-and-stay", name: "Home Stay" },
+    { link: "/services/tours", name: "Tours", sublinks: subLinks?.tours },
+    {
+      link: "/services/trekking",
+      name: "Trekking",
+      sublinks: subLinks?.trekking,
+    },
+    {
+      link: "/services/adventures",
+      name: "Adventures",
+      sublinks: subLinks?.adventures,
+    },
+    {
+      link: "/services/national-park",
+      name: "National Park",
+      sublinks: subLinks?.np,
+    },
+    { link: "/services/hiking", name: "Hiking", sublinks: subLinks?.hiking },
+    {
+      link: "/services/community-and-stay",
+      name: "Home Stay",
+      sublinks: subLinks?.home_stay,
+    },
   ];
+
   const abouts = [
     { link: "/about-us", name: "Nepal Memorable Tours" },
     { link: "/nepalese-culture", name: "Nepalese Culture & Festivals" },
@@ -82,36 +179,16 @@ const Nav = () => {
               className={`w-fit h-8 md:h-10`}
               alt={"Nepal Memorable"}
             />
-            <span
-              className={`font-bold ${
-                "text-cyan-500"
-              }`}
-            >
-              NEPAL
-            </span>
-            <span
-              className={`${
-                "text-slate-700"
-              } font-medium`}
-            >
-              MEMORABLE
-            </span>
-            <span
-              className={`${
-                "text-slate-700"
-              } font-medium`}
-            >
-              TOURS
-            </span>
+            <span className={`font-bold ${"text-cyan-500"}`}>NEPAL</span>
+            <span className={`${"text-slate-700"} font-medium`}>MEMORABLE</span>
+            <span className={`${"text-slate-700"} font-medium`}>TOURS</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="w-fit hidden lg:flex gap-2 items-center">
             <div className="relative group">
               <button
-                className={`w-fit px-2 transition-all duration-300 ${
-                  "hover:text-cyan-600"
-                } hover:scale-105 flex gap-2 items-center`}
+                className={`w-fit px-2 transition-all duration-300 ${"hover:text-cyan-600"} hover:scale-105 flex gap-2 items-center`}
               >
                 About Us
                 <FaAngleDown className="text-sm" />
@@ -136,26 +213,31 @@ const Nav = () => {
             <div className="relative group">
               <Link
                 href="/services"
-                className={`w-fit px-2 transition-all duration-300 ${
-                   "hover:text-cyan-600"
-                } hover:scale-105 flex gap-2 items-center`}
+                className={`w-fit px-2 transition-all duration-300 ${"hover:text-cyan-600"} hover:scale-105 flex gap-2 items-center`}
               >
                 Services
                 <FaAngleDown className="text-sm" />
               </Link>
 
-              <div className="hidden absolute w-fit h-fit z-50 group-hover:block p-4 top-5 left-1/2 transform -translate-x-1/2">
-                <div className="w-64 shadow-lg flex flex-col rounded-xl overflow-hidden">
+              <div className="hidden absolute w-fit h-fit z-50 group-hover:block p-4 px-0 top-5 left-1/2 transform -translate-x-1/2">
+                <div className="w-64 shadow-lg flex flex-col rounded-xl">
                   {activities?.map((elem, index) => (
-                    <Link
-                      key={index}
-                      href={elem?.link}
-                      className={`w-full p-4 font-medium text-slate-700 transition-all duration-300 hover:text-cyan-700 ${
-                        index % 2 === 0 ? "bg-white/90" : "bg-blue-100/90"
-                      } backdrop-blur-sm`}
-                    >
-                      {elem?.name}
-                    </Link>
+                    <div key={index} className="w-full h-fit group/act">
+                      <Link
+                        key={index}
+                        href={elem?.link}
+                        className={`w-full p-4 font-medium text-slate-700 transition-all duration-300 hover:text-cyan-700 ${
+                          index % 2 === 0 ? "bg-white/90" : "bg-blue-100/90"
+                        } backdrop-blur-sm flex items-center justify-between`}
+                      >
+                        {elem?.name}
+                        <ChevronRight size={16} />
+                      </Link>
+                      <SubLinkCoponents
+                        baseLink={elem?.link}
+                        sublinks={elem?.sublinks || []}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -164,9 +246,7 @@ const Nav = () => {
               <Link
                 href={elem?.link}
                 key={index}
-                className={`w-fit px-2 transition-all duration-300  ${
-                 "hover:text-cyan-600" 
-                }  hover:scale-105`}
+                className={`w-fit px-2 transition-all duration-300  ${"hover:text-cyan-600"}  hover:scale-105`}
               >
                 {elem?.name}
               </Link>
