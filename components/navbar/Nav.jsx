@@ -9,9 +9,6 @@ import { GetData } from "@/utils/GetData";
 import { ChevronRight } from "lucide-react";
 
 const SubLinkCoponents = ({ baseLink, sublinks }) => {
-  if (baseLink.includes("trek")) {
-    console.log(sublinks);
-  }
   return (
     <div className="w-full max-w-64 p-0 top-4.5 h-fit min-h-full absolute hidden group-hover/act:block -right-64">
       <div className="w-full bg-white h-fit flex flex-col gap-0 shadow-lg">
