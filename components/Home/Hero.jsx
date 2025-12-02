@@ -4,11 +4,11 @@ import CsrVideo from "../reusables/assets/CsrVideo";
 
 const Hero = ({ title }) => {
   const activities = [
-    { link: "/activities/tours", name: "Tours" },
-    { link: "/activities/trekking", name: "Trekking" },
-    { link: "/activities/adventures", name: "Adventures" },
-    { link: "/activities/national-park", name: "National Park" },
-    { link: "/activities/hiking", name: "Hiking" },
+    { link: "/services/tours", name: "Tours" },
+    { link: "/services/trekking", name: "Trekking" },
+    { link: "/services/adventures", name: "Adventures" },
+    { link: "/services/national-park", name: "National Park" },
+    { link: "/services/hiking", name: "Hiking" },
   ];
 
   return (
