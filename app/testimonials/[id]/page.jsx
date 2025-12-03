@@ -57,7 +57,7 @@ const page = async ({ params }) => {
                 alt={data?.title || data?.name}
                 width={500}
                 height={500}
-                className="w-32 md:w-full aspect-square object-cover rounded-full object-center shadow-md mx-auto md:mx-0"
+                className="w-32 md:w-full aspect-square object-cover bg-linear-to-br from-cyan-600 to-teal-700 rounded-full object-center shadow-md mx-auto md:mx-0"
               />
 
               {/* Testimonial Text */}

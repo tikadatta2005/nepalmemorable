@@ -12,7 +12,7 @@ const DetailsPage = ({ data, location }) => {
         src={`${process.env.NEXT_SERVER}/${data?.cover}`}
         width={1200}
         priority
-        className="w-full h-150 object-cover shadow object-center"
+        className="w-full h-150 object-cover shadow object-center  bg-linear-to-br from-cyan-600 to-teal-700 "
         height={700}
       />
 
