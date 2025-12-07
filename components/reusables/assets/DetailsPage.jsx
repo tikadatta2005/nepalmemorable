@@ -54,7 +54,12 @@ const DetailsPage = ({ data, location }) => {
             </p>
           )}
 
-          {data?.lists && <List1 data={data?.lists} />}
+           <div
+            className="w-full text-base text-slate-700"
+            dangerouslySetInnerHTML={{ __html: `${data?.description}` }}
+          ></div>
+
+          {((data?.lists || data?.list))&& <List1 data={data?.lists || data?.list} />}
 
           {/* content loading */}
           <div
