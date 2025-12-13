@@ -6,6 +6,7 @@ import {
   FaPhone,
   FaExternalLinkAlt,
   FaGlobe,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 // ----------------------
@@ -40,11 +41,9 @@ const CurrencyConverter = () => {
 
   return (
     <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div className="flex items-center gap-2 text-cyan-100">
-      </div>
+      <div className="flex items-center gap-2 text-cyan-100"></div>
 
       <div className="flex items-center gap-2 text-sm text-white bg-cyan-900/60 p-2 rounded-lg">
-    
         <FaGlobe className="text-xl" />
         <input
           type="number"
@@ -189,13 +188,21 @@ const Footer = () => {
                 <FaMailBulk />
                 <span>{data?.email}</span>
               </a>
-              <a
-                href={`tel:${data?.phone}`}
-                className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
-              >
-                <FaPhone />
-                <span>{data?.phone}</span>
-              </a>
+              {data?.phone
+                ?.replaceAll(" ", "")
+                .split(",")
+                ?.map((nums, index) => {
+                  return (
+                    <a
+                      href={`tel:977${nums}`}
+                      key={index}
+                      className="flex items-center gap-2 hover:text-cyan-300 transition-colors"
+                    >
+                      <FaPhone />
+                      <span>+977 {nums}</span>
+                    </a>
+                  );
+                })}
             </div>
           </div>
 
@@ -238,6 +245,9 @@ const Footer = () => {
             <h4 className="text-lg font-bold text-white mb-4">
               Currency Rates
             </h4>
+            <p className="pb-4 text-sm text-cyan-100">
+              The currency rate will be changed as per the market.
+            </p>
             <CurrencyRateList />
           </div>
         </div>
@@ -270,24 +280,38 @@ const Footer = () => {
             </div>
 
             {/* Nepal Tourism Board Link */}
-            <a
-              href="https://ntb.gov.np/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-6 py-3 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-all hover:scale-105 group"
-            >
-              <span className="text-sm font-medium text-white">
-                Nepal Tourism Board
-              </span>
-              <FaExternalLinkAlt className="text-cyan-200 group-hover:text-white text-sm" />
-            </a>
+            <div className="w-fit flex gap-4 flex-wrap">
+              <a
+                href="https://ntb.gov.np/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-all hover:scale-105 group"
+              >
+                <span className="text-sm font-medium text-white">
+                  Nepal Tourism Board
+                </span>
+                <FaExternalLinkAlt className="text-cyan-200 group-hover:text-white text-sm" />
+              </a>
+              <a
+                href="https://ntb.gov.np/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-cyan-800 hover:bg-cyan-700 rounded-lg transition-all hover:scale-105 group"
+              >
+                <span className="text-sm font-medium text-white">
+                  Nepal Tourism Board
+                </span>
+                <FaExternalLinkAlt className="text-cyan-200 group-hover:text-white text-sm" />
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-cyan-800/50 text-center">
           <p className="text-sm text-cyan-200">
-            © {new Date().getFullYear()} Nepal Memorable Tours. All rights reserved.
+            © {new Date().getFullYear()} Nepal Memorable Tours. All rights
+            reserved.
           </p>
         </div>
       </div>
