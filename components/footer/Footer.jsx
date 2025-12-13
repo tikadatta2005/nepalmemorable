@@ -1,5 +1,6 @@
 "use client";
 import { GetData } from "@/utils/GetData";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
   FaMailBulk,
@@ -263,9 +264,9 @@ const Footer = () => {
               <div className="flex items-center gap-4">
                 {data?.socialmediaLinks &&
                   data?.socialmediaLinks?.map((social, index) => {
-                    const Icon = social.icon;
+                    const Icon = social?.icon;
                     return (
-                      <a
+                      <Link
                         key={index}
                         href={social.url}
                         target="_blank"
@@ -273,7 +274,7 @@ const Footer = () => {
                         className="text-cyan-100 hover:text-white text-xl transition-all hover:scale-110"
                       >
                         <Icon />
-                      </a>
+                      </Link>
                     );
                   })}
               </div>
